@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/widgets/common/custom_text_form_field.dart';
+import 'package:nsb_remit/widgets/common/common_text.dart';
 
 import '../../../widgets/common/common_layout.dart';
 
@@ -24,19 +26,72 @@ class _SignInScreenState extends State<SignInScreen> {
           hedingSubTitle:
               'Please provide your Credentials to \n Log In with NSB Remit',
           maxLine: 2,
-          body: CustomTextFromField(
-            controller: _emailController,
-            lableText: "Email Address",
-            hintText: "Enter Your Email Addres",
+          body: Column(
+            children: [
+              CustomTextFromField(
+                controller: _emailController,
+                lableText: "Email Address",
+                hintText: "Enter Your Email Addres",
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              const CommonText(
+                text: 'Enter Your PIN*',
+                whiteTextSize: 11.0,
+                alignment: Alignment.topLeft,
+                // textColor: AppColors.secondary,
+              ),
+              const SizedBox(
+                height: 100.0,
+                child: Text('enterpin space'),
+              ),
+              const Row(
+                children: [
+                  CommonText(
+                      text: 'Forgot your ',
+                      whiteTextSize: 11.0,
+                      // alignment: Alignment.topLeft
+                      ),
+                  CommonText(
+                    text: 'PIN?',
+                    whiteTextSize: 11.0,
+                    // alignment: Alignment.topLeft,
+                    textColor: AppColors.secondary,
+                  ),
+                ],
+              ),
+              const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                   SizedBox(
+                    height: 100.0,
+                    child: Text('Sign in button'),
+                  ),
+                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CommonText(
+                          text: "Don’t have Account? ",
+                          whiteTextSize: 11.0,),
+                      CommonText(
+                        text: 'Sign Up',
+                        whiteTextSize: 11.0,
+                        textColor: AppColors.secondary,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
           ),
-
         ),
         Positioned(
           bottom: 0,
           left: 0,
           right: 0,
           child: Image.asset("assets/images/login_bottom_image.png"),
-        )
+        ),
       ],
     );
   }
