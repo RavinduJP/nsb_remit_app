@@ -58,6 +58,7 @@ flutter:
   assets:
     - assets/images/nsb_remit_logo.png
     - assets/images/splash_screen_background.png
+    - assets/images/login_bottom_image.png
  
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

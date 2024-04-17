@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nsb_remit/screens/auth/login/sign_in_screen.dart';
 import 'package:nsb_remit/screens/initial/spalsh_screen.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: SignInScreen(),
         );
   }
 }
