@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
+import 'package:nsb_remit/widgets/common/common_button.dart';
 import 'package:nsb_remit/widgets/common/custom_text_form_field.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 
@@ -43,16 +44,16 @@ class _SignInScreenState extends State<SignInScreen> {
                 // textColor: AppColors.secondary,
               ),
               const SizedBox(
-                height: 100.0,
+                height: 70.0,
                 child: Text('enterpin space'),
               ),
               const Row(
                 children: [
                   CommonText(
-                      text: 'Forgot your ',
-                      whiteTextSize: 11.0,
-                      // alignment: Alignment.topLeft
-                      ),
+                    text: 'Forgot your ',
+                    whiteTextSize: 11.0,
+                    // alignment: Alignment.topLeft
+                  ),
                   CommonText(
                     text: 'PIN?',
                     whiteTextSize: 11.0,
@@ -64,16 +65,29 @@ class _SignInScreenState extends State<SignInScreen> {
               const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   SizedBox(
-                    height: 100.0,
-                    child: Text('Sign in button'),
+                  SizedBox(
+                    height: 15.0,
                   ),
-                   Row(
+                  CommonButton(
+                    bordercolor: AppColors.secondary,
+                    borderWidth: 1.0,
+                    color: AppColors.secondary,
+                    boxShape: BoxShape.rectangle,
+                    buttonText: 'Sign In',
+                    btnTextColor: AppColors.primary,
+                    btnFontSize: 14.0,
+                    btnFontWeight: FontWeight.w500,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CommonText(
-                          text: "Don’t have Account? ",
-                          whiteTextSize: 11.0,),
+                        text: "Don’t have Account? ",
+                        whiteTextSize: 11.0,
+                      ),
                       CommonText(
                         text: 'Sign Up',
                         whiteTextSize: 11.0,
