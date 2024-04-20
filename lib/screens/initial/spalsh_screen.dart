@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nsb_remit/utils/constants/asset_paths.dart';
-import 'package:nsb_remit/widgets/common/alignment_widget.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

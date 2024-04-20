@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../utils/constants/app_colors.dart';
 
@@ -9,12 +10,18 @@ class CommonText extends StatelessWidget {
     required this.whiteTextSize,
     this.alignment,
     this.textColor,
+    this.underLine,
+    this.underlineColor,
+    this.fontWeight,
   });
 
   final String text;
   final double whiteTextSize;
   final Alignment? alignment;
   final Color? textColor;
+  final TextDecoration? underLine;
+  final Color? underlineColor;
+  final FontWeight? fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +31,12 @@ class CommonText extends StatelessWidget {
         text,
         // textAlign: TextAlign.start,
         style: TextStyle(
-            color: textColor ?? AppColors.heddingColor,
-            fontSize: whiteTextSize,
-            fontWeight: FontWeight.w600),
+          color: textColor ?? AppColors.heddingColor,
+          fontSize: whiteTextSize,
+          fontWeight: fontWeight,
+          decoration: underLine,
+          decorationColor: underlineColor,
+        ),
       ),
     );
   }

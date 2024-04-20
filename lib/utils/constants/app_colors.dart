@@ -10,5 +10,7 @@ class AppColors {
   static const subHeddingColor = Color(0xff6F6F6F);
   static const buttomSubHeddingColor = Color(0xff707070);
   static const textFieldBorderColor = Color(0xffBEBEBE);
- 
+  static const notificationBackColor = Color(0xffBFBFBF);
+  static const whiteColor = Color(0xffFFFFFF);
+  static const backButtonBorderColor = Color(0xffFAFAFA);
 }

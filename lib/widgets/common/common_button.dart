@@ -11,6 +11,7 @@ class CommonButton extends StatelessWidget {
     required this.btnTextColor,
     required this.btnFontSize,
     required this.btnFontWeight,
+    required this.onTap,
   });
 
   final Color bordercolor;
@@ -21,28 +22,32 @@ class CommonButton extends StatelessWidget {
   final Color btnTextColor;
   final double btnFontSize;
   final FontWeight btnFontWeight;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      margin: const EdgeInsets.symmetric(horizontal: 70.0, vertical: 5.0),
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: bordercolor,
-            width: borderWidth,
-            style: BorderStyle.solid,
-          ),
-          borderRadius: BorderRadius.circular(9.0),
-          color: color,
-          shape: boxShape),
-      child: Center(
-        child: Text(
-          buttonText,
-          style: TextStyle(
-            color: btnTextColor,
-            fontSize: btnFontSize,
-            fontWeight: btnFontWeight,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        margin: const EdgeInsets.symmetric(horizontal: 70.0, vertical: 5.0),
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: bordercolor,
+              width: borderWidth,
+              style: BorderStyle.solid,
+            ),
+            borderRadius: BorderRadius.circular(9.0),
+            color: color,
+            shape: boxShape),
+        child: Center(
+          child: Text(
+            buttonText,
+            style: TextStyle(
+              color: btnTextColor,
+              fontSize: btnFontSize,
+              fontWeight: btnFontWeight,
+            ),
           ),
         ),
       ),
