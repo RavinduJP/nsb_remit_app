@@ -7,4 +7,5 @@ class Routes {
   static const homeScreen = '/home-screen';
   static const signUpDetailsScreen = '/sign-up-screen';
   static const otpVerificationScreen = '/otp-verification-screen';
+  static const userRagistrationScreen = '/user-Registrration-screen';
 }

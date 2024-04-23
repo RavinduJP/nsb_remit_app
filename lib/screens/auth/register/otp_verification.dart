@@ -6,6 +6,8 @@ import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../../utils/constants/routes.dart';
+
 class OtpVerification extends StatefulWidget {
   const OtpVerification({super.key});
 
@@ -42,10 +44,9 @@ class _OtpVerificationState extends State<OtpVerification> {
               ),
               hintCharacter: '*',
               hintStyle: const TextStyle(
-                color: AppColors.heddingColor,
-                fontSize: 20.0,
-                fontWeight: FontWeight.w600
-              ),
+                  color: AppColors.heddingColor,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600),
               showCursor: false,
               keyboardType: TextInputType.number,
               pinTheme: PinTheme(
@@ -66,7 +67,8 @@ class _OtpVerificationState extends State<OtpVerification> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CommonText(text: 'Didn’t receive OTP? ', whiteTextSize: 12.0),
+              const CommonText(
+                  text: 'Didn’t receive OTP? ', whiteTextSize: 12.0),
               GestureDetector(
                 onTap: () {},
                 child: const CommonText(
@@ -84,7 +86,9 @@ class _OtpVerificationState extends State<OtpVerification> {
           ),
         ],
       ),
-      bottomButton: ButtonRow(onTap: () {}),
+      bottomButton: ButtonRow(onTap: () {
+        Navigator.of(context).pushNamed(Routes.userRagistrationScreen);
+      }),
     );
   }
 }
