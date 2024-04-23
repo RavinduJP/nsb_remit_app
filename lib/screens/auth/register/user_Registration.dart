@@ -3,6 +3,8 @@ import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:nsb_remit/widgets/common/custom_text_form_field.dart';
 
+import '../../../utils/constants/routes.dart';
+
 class UserRegistration extends StatefulWidget {
   const UserRegistration({super.key});
 
@@ -62,7 +64,9 @@ class _UserRegistrationState extends State<UserRegistration> {
           ),
         ],
       ),
-      bottomButton: ButtonRow(onTap: () {},),
+      bottomButton: ButtonRow(onTap: () {
+        Navigator.of(context).pushNamed(Routes.scanPassportScreen);
+      },),
     );
   }
 }

@@ -15,6 +15,7 @@ class CommonLayout extends StatelessWidget {
     required this.body,
     this.image,
     this.bottomButton = const SizedBox(),
+    this.isGrayButtonAvelable = false,
   });
 
   final ScrollPhysics? physics;
@@ -27,6 +28,7 @@ class CommonLayout extends StatelessWidget {
   final Widget body;
   final String? image;
   final Widget bottomButton;
+  final bool? isGrayButtonAvelable;
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +78,11 @@ class CommonLayout extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: SizedBox(
-          height: 90.0,
+        bottomNavigationBar: 
+        SizedBox(
+          height: !isGrayButtonAvelable!?140: 90.0,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               bottomButton,
               const SizedBox(

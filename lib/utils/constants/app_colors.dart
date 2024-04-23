@@ -13,4 +13,5 @@ class AppColors {
   static const notificationBackColor = Color(0xffBFBFBF);
   static const whiteColor = Color(0xffFFFFFF);
   static const backButtonBorderColor = Color(0xffFAFAFA);
+  static const grayButtonColor = Color(0xff404040);
 }
