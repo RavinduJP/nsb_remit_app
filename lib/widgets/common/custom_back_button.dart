@@ -4,17 +4,17 @@ import 'package:nsb_remit/utils/constants/app_colors.dart';
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({
     super.key, 
-    required this.onTap,
+    // required this.onTap,
   });
 
-  final Function() onTap;
+  // final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => Navigator.pop(context),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         // margin: const EdgeInsets.symmetric(horizontal: 70.0, vertical: 5.0),
         decoration: BoxDecoration(
             border: Border.all(

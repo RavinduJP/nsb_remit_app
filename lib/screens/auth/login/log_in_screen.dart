@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nsb_remit/screens/home_screen.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
+import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/utils/mixins/responsive_layout_mixin.dart';
 import 'package:nsb_remit/widgets/common/common_button.dart';
 import 'package:nsb_remit/widgets/common/custom_text_form_field.dart';
@@ -10,14 +12,14 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../widgets/common/common_layout.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class LogInScreen extends StatefulWidget {
+  const LogInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<LogInScreen> createState() => _LogInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _LogInScreenState extends State<LogInScreen> {
   final _emailController = TextEditingController();
   final _pinController = TextEditingController();
 
@@ -102,18 +104,18 @@ class _SignInScreenState extends State<SignInScreen> {
                         buttonText: 'Sign In',
                         btnTextColor: AppColors.primary,
                         btnFontSize: 14.0,
-                        btnFontWeight: FontWeight.w500, 
+                        btnFontWeight: FontWeight.w500,
                         onTap: () {
-
+                          Navigator.of(context).pushNamed(Routes.homeScreen);
                         },
                       ),
                       const SizedBox(
                         height: 10.0,
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CommonText(
+                          const CommonText(
                             text: "Don’t have Account? ",
                             whiteTextSize: 11.0,
                           ),
@@ -121,6 +123,10 @@ class _SignInScreenState extends State<SignInScreen> {
                             text: 'Sign Up',
                             whiteTextSize: 11.0,
                             textColor: AppColors.secondary,
+                            underLine: TextDecoration.underline,
+                            underlineColor: AppColors.secondary,
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(Routes.signUpDetailsScreen),
                           ),
                         ],
                       ),

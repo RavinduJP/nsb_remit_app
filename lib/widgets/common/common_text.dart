@@ -12,7 +12,8 @@ class CommonText extends StatelessWidget {
     this.textColor,
     this.underLine,
     this.underlineColor,
-    this.fontWeight,
+    this.fontWeight, 
+    this.onTap,
   });
 
   final String text;
@@ -22,20 +23,24 @@ class CommonText extends StatelessWidget {
   final TextDecoration? underLine;
   final Color? underlineColor;
   final FontWeight? fontWeight;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: alignment,
-      child: Text(
-        text,
-        // textAlign: TextAlign.start,
-        style: TextStyle(
-          color: textColor ?? AppColors.heddingColor,
-          fontSize: whiteTextSize,
-          fontWeight: fontWeight,
-          decoration: underLine,
-          decorationColor: underlineColor,
+      child: GestureDetector(
+        onTap: onTap ?? () {} ,
+        child: Text(
+          text,
+          // textAlign: TextAlign.start,
+          style: TextStyle(
+            color: textColor ?? AppColors.heddingColor,
+            fontSize: whiteTextSize,
+            fontWeight: fontWeight,
+            decoration: underLine,
+            decorationColor: underlineColor,
+          ),
         ),
       ),
     );

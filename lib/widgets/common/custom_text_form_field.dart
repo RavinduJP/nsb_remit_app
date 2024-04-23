@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:nsb_remit/utils/constants/app_colors.dart';
 
 class CustomTextFromField extends StatelessWidget {
   const CustomTextFromField({
     super.key,
     this.isHighlighted = false,
     required this.controller,
-    required this.lableText,
+    this.lableText,
     required this.hintText,
     this.errorText,
     this.enabled = true,
@@ -14,7 +15,7 @@ class CustomTextFromField extends StatelessWidget {
   });
 
   final TextEditingController controller;
-  final String lableText;
+  final String? lableText;
   final String hintText;
   final String? errorText;
   final bool isHighlighted;
@@ -29,14 +30,14 @@ class CustomTextFromField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          lableText,
+          lableText!,
           style: const TextStyle(
               color: Color(0xffF5F5F5),
               fontSize: 12.0,
               fontWeight: FontWeight.w400),
         ),
         const SizedBox(
-          height: 10.0,
+          height: 5.0,
         ),
         TextFormField(
           decoration: InputDecoration(
@@ -55,6 +56,8 @@ class CustomTextFromField extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
             ),
           ),
+          cursorColor: AppColors.textFieldBorderColor,
+          style: const TextStyle(color: AppColors.heddingColor),
           controller: controller,
           enabled: enabled,
           onChanged: onChanged,

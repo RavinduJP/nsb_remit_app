@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
+import 'package:nsb_remit/widgets/common/common_button.dart';
+import 'package:nsb_remit/widgets/common/international_mobile_number_field.dart';
 
 import '../utils/constants/dimensions.dart';
+import '../utils/constants/routes.dart';
 import '../widgets/common/header_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,18 +18,33 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
               horizontal: Dimension.screenWidthFactor,
               vertical: Dimension.screenWidthFactor),
           child: Column(
             children: [
-              HeaderWidget(),
-              SizedBox(height: 50.0,),
-              ButtonRow(),
+              const HeaderWidget(),
+              const SizedBox(
+                height: 50.0,
+              ),
+              const SizedBox(
+                height: 50.0,
+              ),
+              CommonButton(
+                bordercolor: AppColors.secondary,
+                borderWidth: 0.0,
+                color: AppColors.secondary,
+                boxShape: BoxShape.rectangle,
+                buttonText: 'Send Money',
+                btnTextColor: AppColors.primary,
+                btnFontSize: 15.0,
+                btnFontWeight: FontWeight.w600,
+                onTap: () {},
+              ),
             ],
           ),
         ),

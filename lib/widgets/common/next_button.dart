@@ -11,7 +11,7 @@ class NextButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 80.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
         // margin: const EdgeInsets.symmetric(horizontal: 70.0, vertical: 5.0),
         decoration: BoxDecoration(
             border: Border.all(

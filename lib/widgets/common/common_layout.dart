@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/utils/constants/dimensions.dart';
 
-
 class CommonLayout extends StatelessWidget {
   const CommonLayout({
     super.key,
@@ -15,6 +14,7 @@ class CommonLayout extends StatelessWidget {
     this.fontFamily,
     required this.body,
     this.image,
+    this.bottomButton = const SizedBox(),
   });
 
   final ScrollPhysics? physics;
@@ -26,6 +26,7 @@ class CommonLayout extends StatelessWidget {
   final String? fontFamily;
   final Widget body;
   final String? image;
+  final Widget bottomButton;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,8 @@ class CommonLayout extends StatelessWidget {
       child: Scaffold(
         backgroundColor: AppColors.primary,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Dimension.screenWidthFactor),
+          padding: const EdgeInsets.symmetric(
+              horizontal: Dimension.screenWidthFactor),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -50,15 +52,18 @@ class CommonLayout extends StatelessWidget {
               const SizedBox(
                 height: 15.0,
               ),
-              Text(
-                hedingSubTitle,
-                textAlign: TextAlign.center,
-                maxLines: maxLine,
-                style: TextStyle(
-                  fontFamily: fontFamily ?? '',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12.0,
-                  color: AppColors.subHeddingColor,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  hedingSubTitle,
+                  textAlign: TextAlign.center,
+                  maxLines: maxLine,
+                  style: TextStyle(
+                    fontFamily: fontFamily ?? '',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12.0,
+                    color: AppColors.subHeddingColor,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -71,34 +76,53 @@ class CommonLayout extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(bottom: 20),
-          child: RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: bottomSubTitleOne ?? "National Saving Bank\n",
-                  style: TextStyle(
-                    fontFamily: fontFamily ?? '',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 10.0,
-                    color: AppColors.buttomSubHeddingColor,
-                  ),
-                ),
-                TextSpan(
-                  text: bottomSubTitleTwo ??
-                      "The safest place for your money",
-                  style: TextStyle(
-                    fontFamily: fontFamily ?? '',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 8.0,
-                    color: AppColors.buttomSubHeddingColor,
-                  ),
-                ),
-              ],
-            ),
+        bottomNavigationBar: SizedBox(
+          height: 90.0,
+          child: Column(
+            children: [
+              bottomButton,
+              const SizedBox(
+                height: 15.0,
+              ),
+              const BottomNavigationText(),
+            ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class BottomNavigationText extends StatelessWidget {
+  const BottomNavigationText({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: RichText(
+        textAlign: TextAlign.center,
+        text: const TextSpan(
+          children: [
+            TextSpan(
+              text: 'National Saving Bank\n',
+              style: TextStyle(
+                // fontFamily: fontFamily ?? '',
+                fontWeight: FontWeight.w400,
+                fontSize: 10.0,
+                color: AppColors.buttomSubHeddingColor,
+              ),
+            ),
+            TextSpan(
+              text: 'The safest place for your money',
+              style: TextStyle(
+                // fontFamily: fontFamily ?? '',
+                fontWeight: FontWeight.w400,
+                fontSize: 8.0,
+                color: AppColors.buttomSubHeddingColor,
+              ),
+            ),
+          ],
         ),
       ),
     );
