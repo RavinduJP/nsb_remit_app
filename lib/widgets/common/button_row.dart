@@ -11,11 +11,13 @@ class ButtonRow extends StatelessWidget {
     required this.onTap,
     this.isEnableGreyBtn = false,
     this.onTapGreyButton,
+    this.grayButtonText,
   });
 
   final Function() onTap;
   final Function()? onTapGreyButton;
   final bool? isEnableGreyBtn;
+  final String? grayButtonText;
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +44,8 @@ class ButtonRow extends StatelessWidget {
         ),
         isEnableGreyBtn!
             ? GrayButton(
-                grayButtonText: 'Don’t Have Passport',
-                onTap: onTapGreyButton?? (){},
+                grayButtonText: grayButtonText ?? '',
+                onTap: onTapGreyButton ?? () {},
               )
             : Container(),
       ],

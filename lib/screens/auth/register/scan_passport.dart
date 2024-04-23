@@ -19,6 +19,7 @@ class ScanPassport extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(Routes.scanVisaScreen);
         },
+        grayButtonText: 'Don’t Have Passport',
         onTapGreyButton: () {},
       ),
     );
