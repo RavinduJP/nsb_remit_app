@@ -6,7 +6,7 @@ class CustomTextFromField extends StatelessWidget {
     super.key,
     this.isHighlighted = false,
     required this.controller,
-    this.lableText,
+    this.lableText = '',
     required this.hintText,
     this.errorText,
     this.enabled = true,

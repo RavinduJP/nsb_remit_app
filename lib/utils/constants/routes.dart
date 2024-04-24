@@ -1,3 +1,4 @@
+
 class Routes {
   Routes._();
 
@@ -12,4 +13,6 @@ class Routes {
   static const scanVisaScreen = '/scan-Visa-screen';
   static const uploadSelfieScreen = '/upload-selfie-screen';
   static const securityVerificationScreen = '/security-verification-screen';
+  static const createPinScreen = '/create-pin-screen';
+  static const quickSetUpScreen = '/quick-setup-screen';
 }

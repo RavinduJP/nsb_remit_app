@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nsb_remit/screens/auth/register/otp_verification.dart';
+import 'package:nsb_remit/screens/auth/register/quick_setup.dart';
 import 'package:nsb_remit/screens/auth/register/scan_passport.dart';
 import 'package:nsb_remit/screens/auth/register/scan_visa.dart';
 import 'package:nsb_remit/screens/auth/register/security_verification.dart';
@@ -8,6 +9,7 @@ import 'package:nsb_remit/screens/auth/register/user_Registration.dart';
 import 'package:nsb_remit/screens/error/error_screen.dart';
 import 'package:nsb_remit/screens/home_screen.dart';
 import 'package:nsb_remit/screens/initial/spalsh_screen.dart';
+import '../screens/auth/register/create_pin.dart';
 import '../screens/auth/register/sign_up_details.dart';
 import '../utils/constants/routes.dart';
 
@@ -57,6 +59,16 @@ class RouteGenerator {
         case Routes.securityVerificationScreen:
         return MaterialPageRoute(
           builder: (_) => const SecurityVerification(),
+        );
+
+        case Routes.createPinScreen:
+        return MaterialPageRoute(
+          builder: (_) => const CreatePin(),
+        );
+
+        case Routes.quickSetUpScreen:
+        return MaterialPageRoute(
+          builder: (_) => const QuickSetUp(),
         );
 
       default:

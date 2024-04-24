@@ -38,43 +38,46 @@ class CommonLayout extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: Dimension.screenWidthFactor),
-          child: Column(
-            children: [
-              Text(
-                hedingTitle,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: fontFamily ?? '',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25.0,
-                  color: AppColors.heddingColor,
-                ),
-              ),
-              const SizedBox(
-                height: 15.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Text(
-                  hedingSubTitle,
+          child: Container(
+            width: double.maxFinite,
+            child: Column(
+              children: [
+                Text(
+                  hedingTitle,
                   textAlign: TextAlign.center,
-                  maxLines: maxLine,
                   style: TextStyle(
                     fontFamily: fontFamily ?? '',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12.0,
-                    color: AppColors.subHeddingColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25.0,
+                    color: AppColors.heddingColor,
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              Container(child: body),
-              const SizedBox(
-                height: 10.0,
-              ),
-            ],
+                const SizedBox(
+                  height: 15.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    hedingSubTitle,
+                    textAlign: TextAlign.center,
+                    maxLines: maxLine,
+                    style: TextStyle(
+                      fontFamily: fontFamily ?? '',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12.0,
+                      color: AppColors.subHeddingColor,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Container(child: body),
+                const SizedBox(
+                  height: 10.0,
+                ),
+              ],
+            ),
           ),
         ),
         bottomNavigationBar: 

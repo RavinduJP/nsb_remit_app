@@ -12,7 +12,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../widgets/common/common_layout.dart';
 
 class LogInScreen extends StatefulWidget {
-  const LogInScreen({super.key});
+  const LogInScreen({super.key,});
 
   @override
   State<LogInScreen> createState() => _LogInScreenState();
@@ -72,6 +72,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                     controller: _pinController,
                     onCompleted: (value) => print("Completed"),
+                    autoDisposeControllers: false,
                   ),
                   const Row(
                     children: [
