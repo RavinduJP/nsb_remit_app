@@ -39,7 +39,6 @@ class CommonLayout extends StatelessWidget {
           padding: const EdgeInsets.symmetric(
               horizontal: Dimension.screenWidthFactor),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 hedingTitle,

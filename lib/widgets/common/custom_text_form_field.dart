@@ -12,6 +12,8 @@ class CustomTextFromField extends StatelessWidget {
     this.enabled = true,
     this.onChanged,
     this.keyboardType,
+    this.isEnableSuffixIcon = false,
+    this.onTap,
   });
 
   final TextEditingController controller;
@@ -22,6 +24,8 @@ class CustomTextFromField extends StatelessWidget {
   final bool enabled;
   final void Function(String)? onChanged;
   final TextInputType? keyboardType;
+  final bool? isEnableSuffixIcon;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +59,16 @@ class CustomTextFromField extends StatelessWidget {
               borderSide: BorderSide(color: borderColor),
               borderRadius: BorderRadius.circular(10.0),
             ),
+            suffixIcon: isEnableSuffixIcon!
+                ? GestureDetector(
+                    onTap: onTap ?? () {},
+                    child: const Icon(
+                      Icons.arrow_drop_down,
+                      color: AppColors.textFieldBorderColor,
+                      size: 30.0,
+                    ),
+                  )
+                : null,
           ),
           cursorColor: AppColors.textFieldBorderColor,
           style: const TextStyle(color: AppColors.heddingColor),

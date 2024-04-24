@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nsb_remit/screens/auth/register/otp_verification.dart';
 import 'package:nsb_remit/screens/auth/register/scan_passport.dart';
 import 'package:nsb_remit/screens/auth/register/scan_visa.dart';
+import 'package:nsb_remit/screens/auth/register/security_verification.dart';
+import 'package:nsb_remit/screens/auth/register/upload_selfie.dart';
 import 'package:nsb_remit/screens/auth/register/user_Registration.dart';
 import 'package:nsb_remit/screens/error/error_screen.dart';
 import 'package:nsb_remit/screens/home_screen.dart';
@@ -45,6 +47,16 @@ class RouteGenerator {
         case Routes.scanVisaScreen:
         return MaterialPageRoute(
           builder: (_) => const ScanVisa(),
+        );
+
+        case Routes.uploadSelfieScreen:
+        return MaterialPageRoute(
+          builder: (_) => const UploadSelfie(),
+        );
+
+        case Routes.securityVerificationScreen:
+        return MaterialPageRoute(
+          builder: (_) => const SecurityVerification(),
         );
 
       default:

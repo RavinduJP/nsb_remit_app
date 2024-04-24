@@ -53,7 +53,8 @@ class _SignUpDetailsState extends State<SignUpDetails> {
           CustomTextFromField(
               controller: _emailController,
               lableText: 'Email Address',
-              hintText: 'Enter Your Emails Addres'),
+              hintText: 'Enter Your Emails Addres',
+              keyboardType: TextInputType.emailAddress,),
         ],
       ),
       bottomButton: Padding(

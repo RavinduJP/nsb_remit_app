@@ -61,6 +61,8 @@ class _UserRegistrationState extends State<UserRegistration> {
             controller: _countryNameController,
             lableText: 'Country',
             hintText: 'Select Your Country',
+            isEnableSuffixIcon: true,
+            onTap: () {},
           ),
         ],
       ),

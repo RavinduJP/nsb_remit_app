@@ -10,4 +10,6 @@ class Routes {
   static const userRagistrationScreen = '/user-Registrration-screen';
   static const scanPassportScreen = '/scan-passport-screen';
   static const scanVisaScreen = '/scan-Visa-screen';
+  static const uploadSelfieScreen = '/upload-selfie-screen';
+  static const securityVerificationScreen = '/security-verification-screen';
 }
