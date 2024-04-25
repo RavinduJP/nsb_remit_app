@@ -4,20 +4,36 @@ import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 
-class QuickSetUp extends StatelessWidget {
+class QuickSetUp extends StatefulWidget {
   const QuickSetUp({super.key});
 
   @override
+  State<QuickSetUp> createState() => _QuickSetUpState();
+}
+
+class _QuickSetUpState extends State<QuickSetUp> {
+  bool light = true;
+  @override
   Widget build(BuildContext context) {
+    final MaterialStateProperty<Color?> trackColor =
+        MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return Colors.amber;
+        }
+        return null;
+      },
+    );
     return CommonLayout(
       hedingTitle: 'Quick Setup',
       hedingSubTitle:
           'Please fill the following details for your \n Security purpose ',
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CommonText(
@@ -31,9 +47,23 @@ class QuickSetUp extends StatelessWidget {
                   text: 'Enable biometrics for secure and \nfast sign-in.',
                   whiteTextSize: 12.0,
                   fontWeight: FontWeight.w400,
-                  textColor: AppColors.buttomSubHeddingColor,
+                  textColor: AppColors.bottomSubHeddingColor,
                 )
               ],
+            ),
+            Switch(
+              value: light,
+              activeColor: AppColors.secondary,
+              trackColor: trackColor,
+              thumbColor:
+                  const MaterialStatePropertyAll<Color>(AppColors.whiteColor),
+              onChanged: (bool value) {
+                setState(
+                  () {
+                    light = value;
+                  },
+                );
+              },
             ),
           ],
         ),

@@ -116,7 +116,7 @@ class BottomNavigationText extends StatelessWidget {
                 // fontFamily: fontFamily ?? '',
                 fontWeight: FontWeight.w400,
                 fontSize: 10.0,
-                color: AppColors.buttomSubHeddingColor,
+                color: AppColors.bottomSubHeddingColor,
               ),
             ),
             TextSpan(
@@ -125,7 +125,7 @@ class BottomNavigationText extends StatelessWidget {
                 // fontFamily: fontFamily ?? '',
                 fontWeight: FontWeight.w400,
                 fontSize: 8.0,
-                color: AppColors.buttomSubHeddingColor,
+                color: AppColors.bottomSubHeddingColor,
               ),
             ),
           ],

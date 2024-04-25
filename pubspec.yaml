@@ -38,6 +38,8 @@ dependencies:
   pin_code_fields: ^8.0.1
   dotted_border: ^2.1.0
   image_picker: ^1.1.0
+  http: ^1.2.1
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -59,10 +61,13 @@ flutter:
 
   
   assets:
-    - assets/images/nsb_remit_logo.png
-    - assets/images/splash_screen_background.png
-    - assets/images/login_bottom_image.png
-    - assets/images/header_icon.png
+   
+    # nsb_remit_logo.png
+    # - assets/images/splash_screen_background.png
+    # - assets/images/login_bottom_image.png
+    # - assets/images/header_icon.png
+    - assets/images/
+    # - assets/images/camera_icon.png
  
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

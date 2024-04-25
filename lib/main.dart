@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:nsb_remit/providers/auth_provider.dart';
 import 'package:nsb_remit/screens/auth/login/log_in_screen.dart';
 import 'package:nsb_remit/screens/home_screen.dart';
 import 'package:nsb_remit/screens/initial/spalsh_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'routes/route_generator.dart';
 
 void main() {
   runApp(
-    const MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 

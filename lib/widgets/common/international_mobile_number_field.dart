@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../utils/constants/app_colors.dart';
 
+const List<String> list = <String>['+94', 'Two', 'Three', 'Four'];
+
 class InternationalMobileNumberField extends StatefulWidget {
   const InternationalMobileNumberField({
     super.key,
@@ -22,10 +24,11 @@ class InternationalMobileNumberField extends StatefulWidget {
 
 class _InternationalMobileNumberFieldState
     extends State<InternationalMobileNumberField> {
-  final _countryCodeController = TextEditingController();
+  // final _countryCodeController = TextEditingController();
   final _mobileNumberControoler = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    String selectedCountryCode = list.first;
     Color borderColor =
         widget.isHighlighted ? Colors.red : const Color(0xffBEBEBE);
     return Row(
@@ -48,37 +51,49 @@ class _InternationalMobileNumberFieldState
                 const SizedBox(
                   height: 5.0,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: '+94',
-                    hintStyle: const TextStyle(
-                      color: Color(0xff707070),
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w400,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: AppColors.textFieldBorderColor,
+                      width: 1.0,
+                      style: BorderStyle.solid,
                     ),
-                    suffixIcon: GestureDetector(
-                      onTap: () {},
-                      child: const Icon(
-                        Icons.arrow_drop_down,
-                        color: AppColors.textFieldBorderColor,
-                        size: 30.0,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          color: AppColors.textFieldBorderColor),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: borderColor),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                  cursorColor: AppColors.textFieldBorderColor,
-                  style: const TextStyle(color: AppColors.heddingColor),
-                  onChanged: widget.onChanged,
-                  controller: _countryCodeController,
-                  // keyboardType: TextInputType.phone,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 13.0, vertical: 6.0),
+                  child: DropdownButton(
+                    value: selectedCountryCode,
+                    elevation: 16,
+                    style:
+                        const TextStyle(color: AppColors.bottomSubHeddingColor),
+                    icon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: AppColors.textFieldBorderColor,
+                      size: 25.0,
+                    ),
+                    underline: Container(
+                      height: 0,
+                      color: AppColors.bottomSubHeddingColor,
+                    ),
+                    onChanged: (String? value) {
+                      setState(() {
+                        selectedCountryCode = value!;
+                      });
+                    },
+                    items: list.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Container(
+                          child: Text(
+                            value,
+                            style:
+                                const TextStyle(color: AppColors.subHeddingColor,fontSize: 14.0),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 ),
               ],
             ),
@@ -111,7 +126,8 @@ class _InternationalMobileNumberFieldState
                       fontWeight: FontWeight.w400,
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: AppColors.textFieldBorderColor),
+                      borderSide: const BorderSide(
+                          color: AppColors.textFieldBorderColor),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     focusedBorder: OutlineInputBorder(

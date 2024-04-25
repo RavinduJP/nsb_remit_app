@@ -17,11 +17,14 @@ class SignUpDetails extends StatefulWidget {
   State<SignUpDetails> createState() => _SignUpDetailsState();
 }
 
+List options = ['Passport', 'Other'];
+
 class _SignUpDetailsState extends State<SignUpDetails> {
   final _passportNumbeerController = TextEditingController();
   final _NicNumberController = TextEditingController();
   final _emailController = TextEditingController();
 
+  String currentOption = options[0];
   @override
   Widget build(BuildContext context) {
     return CommonLayout(
@@ -35,6 +38,48 @@ class _SignUpDetailsState extends State<SignUpDetails> {
             text: 'How we identify you?',
             whiteTextSize: 12.0,
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center, 
+            children: [
+            SizedBox(
+              width: 170,
+              child: RadioListTile(
+                activeColor: AppColors.secondary,
+                  title: const Text(
+                    'Passport',
+                    style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.heddingColor),
+                  ),
+                  value: options[0],
+                  groupValue: currentOption,
+                  onChanged: (value) {
+                    setState(() {
+                      currentOption = value.toString();
+                    });
+                  }),
+            ),
+            SizedBox(
+              width: 170,
+              child: RadioListTile(
+                activeColor: AppColors.secondary,
+                  title: const Text(
+                    'Other',
+                    style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.heddingColor),
+                  ),
+                  value: options[1],
+                  groupValue: currentOption,
+                  onChanged: (value) {
+                    setState(() {
+                      currentOption = value.toString();
+                    });
+                  }),
+            )
+          ]),
           CustomTextFromField(
             controller: _passportNumbeerController,
             lableText: 'Passport Number',
@@ -51,19 +96,17 @@ class _SignUpDetailsState extends State<SignUpDetails> {
           const InternationalMobileNumberField(
               borderColor: AppColors.textFieldBorderColor),
           CustomTextFromField(
-              controller: _emailController,
-              lableText: 'Email Address',
-              hintText: 'Enter Your Emails Addres',
-              keyboardType: TextInputType.emailAddress,),
+            controller: _emailController,
+            lableText: 'Email Address',
+            hintText: 'Enter Your Emails Addres',
+            keyboardType: TextInputType.emailAddress,
+          ),
         ],
       ),
-      bottomButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: ButtonRow(
-          onTap: () {
-            Navigator.of(context).pushNamed(Routes.otpVerificationScreen);
-          },
-        ),
+      bottomButton: ButtonRow(
+        onTap: () {
+          Navigator.of(context).pushNamed(Routes.otpVerificationScreen);
+        },
       ),
     );
   }
