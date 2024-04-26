@@ -72,17 +72,18 @@ class CommonLayout extends StatelessWidget {
                 const SizedBox(
                   height: 10.0,
                 ),
-                Container(child: body),
-                const SizedBox(
-                  height: 10.0,
+                Container(
+                  child: body,
                 ),
+                // const SizedBox(
+                //   height: 10.0,
+                // ),
               ],
             ),
           ),
         ),
-        bottomNavigationBar: 
-        SizedBox(
-          height: !isGrayButtonAvelable!?140: 90.0,
+        bottomNavigationBar: SizedBox(
+          height: !isGrayButtonAvelable! ? 140.0 : 90.0,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

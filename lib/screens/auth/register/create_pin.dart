@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nsb_remit/providers/user_details_provider.dart';
 import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utils/constants/app_colors.dart';
 
@@ -33,6 +35,7 @@ class CreatePin extends StatelessWidget {
         ),
       ),
       bottomButton: ButtonRow(onTap: () {
+        // print(context.read<UserDetailsProvider>().userDetails.emailAddress);
         Navigator.of(context).pushNamed(Routes.quickSetUpScreen);
       }),
     );

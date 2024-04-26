@@ -98,7 +98,7 @@ class _SignUpDetailsState extends State<SignUpDetails> {
             borderColor: AppColors.textFieldBorderColor,
             list: dialCodeList,
             selectedCountryCode: selecteddialCode,
-            mobileNumberControoler: _mobileNumberController,
+            mobileNumberControler: _mobileNumberController,
           ),
           CustomTextFromField(
             controller: _emailController,
@@ -110,14 +110,20 @@ class _SignUpDetailsState extends State<SignUpDetails> {
       ),
       bottomButton: ButtonRow(
         onTap: () {
-          context.read<UserDetailsProvider>().addSignUpDetails(
-                documentType: currentOption,
-                passportNumber: _passportNumbeerController.text,
-                nicNumber: _nicNumberController.text,
-                selectedCountryCode: selecteddialCode,
-                mobileNumber: _mobileNumberController.text,
-                emailAddress: _emailController.text,
-              );
+          print(currentOption);
+          print(_passportNumbeerController.text);
+          print(_nicNumberController.text);
+          print(selecteddialCode);
+          print(_mobileNumberController.text);
+          print(_emailController.text);
+          // context.read<UserDetailsProvider>().addSignUpDetails(
+          //       documentType: currentOption,
+          //       passportNumber: _passportNumbeerController.text,
+          //       nicNumber: _nicNumberController.text,
+          //       selectedCountryCode: selecteddialCode,
+          //       mobileNumber: _mobileNumberController.text,
+          //       emailAddress: _emailController.text,
+          //     );
           Navigator.of(context).pushNamed(Routes.otpVerificationScreen);
         },
       ),

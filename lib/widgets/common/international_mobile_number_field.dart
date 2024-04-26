@@ -10,7 +10,7 @@ class InternationalMobileNumberField extends StatefulWidget {
     this.onChanged,
     required this.list,
     required this.selectedCountryCode,
-    required this.mobileNumberControoler,
+    required this.mobileNumberControler,
   });
 
   final String? errorText;
@@ -19,7 +19,7 @@ class InternationalMobileNumberField extends StatefulWidget {
   final void Function(String)? onChanged;
   final List<String> list;
   String selectedCountryCode;
-  final TextEditingController mobileNumberControoler;
+  final TextEditingController mobileNumberControler;
 
   @override
   State<InternationalMobileNumberField> createState() =>
@@ -28,7 +28,7 @@ class InternationalMobileNumberField extends StatefulWidget {
 
 class _InternationalMobileNumberFieldState
     extends State<InternationalMobileNumberField> {
-  final _mobileNumberController = TextEditingController();
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +141,7 @@ class _InternationalMobileNumberFieldState
                   ),
                   cursorColor: AppColors.textFieldBorderColor,
                   style: const TextStyle(color: AppColors.heddingColor),
-                  controller: _mobileNumberController,
+                  controller: widget.mobileNumberControler,
                   enabled: true,
                   keyboardType: TextInputType.phone,
                 ),

@@ -3,6 +3,8 @@ import 'package:nsb_remit/models/user_details.dart';
 
 class UserDetailsProvider extends ChangeNotifier {
   UserDetails? _userDetails;
+
+  UserDetails get userDetails => _userDetails!;
   addSignUpDetails(
       {required String documentType,
       required String passportNumber,

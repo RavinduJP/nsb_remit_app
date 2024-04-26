@@ -15,4 +15,5 @@ class AppColors {
   static const backButtonBorderColor = Color(0xffFAFAFA);
   static const grayButtonColor = Color(0xff404040);
   static const bottomSheetBackgroundColor = Color(0xff3B3B3B);
+  static const captureViewGrayColor = Color(0xff404040);
 }

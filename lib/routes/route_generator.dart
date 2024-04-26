@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nsb_remit/screens/auth/register/otp_verification.dart';
+import 'package:nsb_remit/screens/auth/register/proof_documents.dart';
 import 'package:nsb_remit/screens/auth/register/quick_setup.dart';
 import 'package:nsb_remit/screens/auth/register/scan_passport.dart';
 import 'package:nsb_remit/screens/auth/register/scan_visa.dart';
@@ -69,6 +70,11 @@ class RouteGenerator {
         case Routes.quickSetUpScreen:
         return MaterialPageRoute(
           builder: (_) => const QuickSetUp(),
+        );
+
+        case Routes.proofDocumentsScreen:
+        return MaterialPageRoute(
+          builder: (_) => const ProofDocuments(),
         );
 
       default:

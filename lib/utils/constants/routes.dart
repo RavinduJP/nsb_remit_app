@@ -15,4 +15,5 @@ class Routes {
   static const securityVerificationScreen = '/security-verification-screen';
   static const createPinScreen = '/create-pin-screen';
   static const quickSetUpScreen = '/quick-setup-screen';
+  static const proofDocumentsScreen = '/proof-documents-screen';
 }
