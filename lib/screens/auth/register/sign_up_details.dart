@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 import 'package:nsb_remit/widgets/common/custom_text_form_field.dart';
 import 'package:nsb_remit/widgets/common/international_mobile_number_field.dart';
+import 'package:provider/provider.dart';
 
+import '../../../providers/user_details_provider.dart';
 import '../../../utils/constants/routes.dart';
 
 class SignUpDetails extends StatefulWidget {
@@ -18,11 +18,14 @@ class SignUpDetails extends StatefulWidget {
 }
 
 List options = ['Passport', 'Other'];
+List<String> dialCodeList = <String>['+94', 'Two', 'Three', 'Four'];
+String selecteddialCode = '+94';
 
 class _SignUpDetailsState extends State<SignUpDetails> {
   final _passportNumbeerController = TextEditingController();
-  final _NicNumberController = TextEditingController();
+  final _nicNumberController = TextEditingController();
   final _emailController = TextEditingController();
+  final _mobileNumberController = TextEditingController();
 
   String currentOption = options[0];
   @override
@@ -38,13 +41,11 @@ class _SignUpDetailsState extends State<SignUpDetails> {
             text: 'How we identify you?',
             whiteTextSize: 12.0,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center, 
-            children: [
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             SizedBox(
               width: 170,
               child: RadioListTile(
-                activeColor: AppColors.secondary,
+                  activeColor: AppColors.secondary,
                   title: const Text(
                     'Passport',
                     style: TextStyle(
@@ -63,7 +64,7 @@ class _SignUpDetailsState extends State<SignUpDetails> {
             SizedBox(
               width: 170,
               child: RadioListTile(
-                activeColor: AppColors.secondary,
+                  activeColor: AppColors.secondary,
                   title: const Text(
                     'Other',
                     style: TextStyle(
@@ -86,15 +87,19 @@ class _SignUpDetailsState extends State<SignUpDetails> {
             hintText: 'Enter Your Passport Number',
           ),
           CustomTextFromField(
-            controller: _NicNumberController,
+            controller: _nicNumberController,
             lableText: 'NIC Number',
             hintText: 'Enter Your NIC Number',
           ),
           const SizedBox(
             height: 5.0,
           ),
-          const InternationalMobileNumberField(
-              borderColor: AppColors.textFieldBorderColor),
+          InternationalMobileNumberField(
+            borderColor: AppColors.textFieldBorderColor,
+            list: dialCodeList,
+            selectedCountryCode: selecteddialCode,
+            mobileNumberControoler: _mobileNumberController,
+          ),
           CustomTextFromField(
             controller: _emailController,
             lableText: 'Email Address',
@@ -105,6 +110,14 @@ class _SignUpDetailsState extends State<SignUpDetails> {
       ),
       bottomButton: ButtonRow(
         onTap: () {
+          context.read<UserDetailsProvider>().addSignUpDetails(
+                documentType: currentOption,
+                passportNumber: _passportNumbeerController.text,
+                nicNumber: _nicNumberController.text,
+                selectedCountryCode: selecteddialCode,
+                mobileNumber: _mobileNumberController.text,
+                emailAddress: _emailController.text,
+              );
           Navigator.of(context).pushNamed(Routes.otpVerificationScreen);
         },
       ),
