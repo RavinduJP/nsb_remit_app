@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nsb_remit/models/user_details.dart';
+import 'package:nsb_remit/models/user_details_model.dart';
 
 class UserDetailsProvider extends ChangeNotifier {
   UserDetails? _userDetails;

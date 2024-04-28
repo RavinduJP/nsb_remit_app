@@ -3,7 +3,9 @@ import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:nsb_remit/widgets/common/custom_text_form_field.dart';
+import 'package:provider/provider.dart';
 
+import '../../../providers/security_verification_provider.dart';
 import '../../../utils/constants/app_colors.dart';
 
 class SecurityVerification extends StatefulWidget {
@@ -29,7 +31,7 @@ class _SecurityVerificationState extends State<SecurityVerification> {
           'Please fill the following details for your \nSecurity purpose ',
       body: Column(
         children: [
-          //----------------------- second security question -----------------------
+          //----------------------- first security question -----------------------
           Padding(
             padding: const EdgeInsets.only(bottom: 5.0),
             child: CustomTextFromField(
@@ -115,6 +117,13 @@ class _SecurityVerificationState extends State<SecurityVerification> {
       bottomButton: ButtonRow(
         onTap: () {
           Navigator.of(context).pushNamed(Routes.createPinScreen);
+          context
+              .read<SecurityVerificationProvider>()
+              .addSecurityQuestionDetails(
+                  securityQuestionOne: _securityQuestionOneController.text,
+                  securityQuestionTwo: _securityQuestionTwoController.text,
+                  securityQuestionAnswerOne: _securityQuestionOneAnswer.text,
+                  securityQuestionAnswerTwo: _securityQuestionTwoAnswer.text);
         },
       ),
     );

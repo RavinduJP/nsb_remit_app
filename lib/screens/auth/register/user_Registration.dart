@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nsb_remit/providers/user_registration_provider.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:nsb_remit/widgets/common/custom_text_form_field.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utils/constants/routes.dart';
 
@@ -74,9 +76,18 @@ class _UserRegistrationState extends State<UserRegistration> {
           ),
         ),
       ),
-      bottomButton: ButtonRow(onTap: () {
-        Navigator.of(context).pushNamed(Routes.scanPassportScreen);
-      },),
+      bottomButton: ButtonRow(
+        onTap: () {
+          Navigator.of(context).pushNamed(Routes.scanPassportScreen);
+          context.read<UserRegistrationProvider>().addUserregistrationDetails(
+              firstName: _firstNameController.text,
+              lastName: _lastNameController.text,
+              home: _houseNameController.text,
+              streetName: _streetNameController.text,
+              city: _cityNameController.text,
+              country: _countryNameController.text);
+        },
+      ),
     );
   }
 }
