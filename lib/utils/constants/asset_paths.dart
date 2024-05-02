@@ -7,4 +7,6 @@ class AssetPaths {
   static const documentUploadIcon = 'assets/images/documents_upload_icon.png';
   static const bottomSheetCameraIcon = 'assets/images/camera_icon.png';
   static const bottomSheetGalleryIcon = 'assets/images/gallery_icon.png';
+  static const homePageHistoryIcon = 'assets/images/history_icon.png';
+  static const homePageMoreIcon = 'assets/images/more_icon.png';
 }

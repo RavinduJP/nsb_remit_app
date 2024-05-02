@@ -44,17 +44,17 @@ class RouteGenerator {
 
       case Routes.scanPassportScreen:
         return MaterialPageRoute(
-          builder: (_) => const ScanPassport(),
+          builder: (_) => ScanPassport(),
         );
 
         case Routes.scanVisaScreen:
         return MaterialPageRoute(
-          builder: (_) => const ScanVisa(),
+          builder: (_) => ScanVisa(),
         );
 
         case Routes.uploadSelfieScreen:
         return MaterialPageRoute(
-          builder: (_) => const UploadSelfie(),
+          builder: (_) => UploadSelfie(),
         );
 
         case Routes.securityVerificationScreen:
@@ -74,7 +74,7 @@ class RouteGenerator {
 
         case Routes.proofDocumentsScreen:
         return MaterialPageRoute(
-          builder: (_) => const ProofDocuments(),
+          builder: (_) => ProofDocuments(),
         );
 
       default:

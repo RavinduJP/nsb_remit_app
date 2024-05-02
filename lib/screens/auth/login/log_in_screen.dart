@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nsb_remit/providers/user_details_provider.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/utils/mixins/responsive_layout_mixin.dart';
@@ -8,11 +9,14 @@ import 'package:nsb_remit/widgets/common/common_button.dart';
 import 'package:nsb_remit/widgets/common/custom_text_form_field.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 
 import '../../../widgets/common/common_layout.dart';
 
 class LogInScreen extends StatefulWidget {
-  const LogInScreen({super.key,});
+  const LogInScreen({
+    super.key,
+  });
 
   @override
   State<LogInScreen> createState() => _LogInScreenState();
@@ -125,8 +129,19 @@ class _LogInScreenState extends State<LogInScreen> {
                             textColor: AppColors.secondary,
                             underLine: TextDecoration.underline,
                             underlineColor: AppColors.secondary,
-                            onTap: () => Navigator.of(context)
-                                .pushNamed(Routes.signUpDetailsScreen),
+                            onTap: () {
+                              Provider.of<UserDetailsProvider>(context, listen: false)
+                                  .addLoginDetails(
+                                      emailAddress: _emailController.text,
+                                      pin: _pinController.text);
+                              final email = Provider.of<UserDetailsProvider>(context,
+                                      listen: false)
+                                  .userDetails
+                                  .emailAddress;
+                              print(email);
+                              Navigator.of(context)
+                                  .pushNamed(Routes.signUpDetailsScreen);
+                            },
                           ),
                         ],
                       ),

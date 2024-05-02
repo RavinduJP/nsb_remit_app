@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nsb_remit/providers/user_registration_provider.dart';
+import 'package:nsb_remit/providers/user_details_provider.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:nsb_remit/widgets/common/custom_text_form_field.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/constants/routes.dart';
+
+const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+String selectedItem = 'One';
 
 class UserRegistration extends StatefulWidget {
   const UserRegistration({super.key});
@@ -72,20 +75,27 @@ class _UserRegistrationState extends State<UserRegistration> {
                 isEnableSuffixIcon: true,
                 onTap: () {},
               ),
+              // CustomDropDown(itemList: list, selectedItem: selectedItem)
             ],
           ),
         ),
       ),
       bottomButton: ButtonRow(
         onTap: () {
+          Provider.of<UserDetailsProvider>(context, listen: false)
+              .addUserRegistrationDetails(
+                  firstName: _firstNameController.text,
+                  lastName: _lastNameController.text,
+                  home: _houseNameController.text,
+                  streetName: _streetNameController.text,
+                  city: _cityNameController.text,
+                  country: _countryNameController.text);
+          final firstname =
+              Provider.of<UserDetailsProvider>(context, listen: false)
+                  .userDetails
+                  .firstName;
+          print(firstname);
           Navigator.of(context).pushNamed(Routes.scanPassportScreen);
-          context.read<UserRegistrationProvider>().addUserregistrationDetails(
-              firstName: _firstNameController.text,
-              lastName: _lastNameController.text,
-              home: _houseNameController.text,
-              streetName: _streetNameController.text,
-              city: _cityNameController.text,
-              country: _countryNameController.text);
         },
       ),
     );

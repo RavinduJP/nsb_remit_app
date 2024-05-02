@@ -14,23 +14,47 @@ class UserDetails {
   String? passportImage;
   String? visaImage;
   String? selfieImage;
-  List<String>? proofDocument ;
+  String? pin;
+  List<String>? proofDocument;
 
-  UserDetails({
-    this.documentType,
-    this.passportNumbe,
-    this.nicNumber,
-    this.selectedCountryCode,
-    this.mobileNumber,
-    this.emailAddress,
-    this.firstName,
-    this.lastName,
-    this.house,
-    this.streetName,
-     this.city,
-     this.country,
-     this.passportImage,
-     this.visaImage,
-    this. selfieImage
-  });
+  UserDetails(
+      {this.documentType,
+      this.passportNumbe,
+      this.nicNumber,
+      this.selectedCountryCode,
+      this.mobileNumber,
+      this.emailAddress,
+      this.firstName,
+      this.lastName,
+      this.house,
+      this.streetName,
+      this.city,
+      this.country,
+      this.passportImage,
+      this.visaImage,
+      this.selfieImage,
+      this.pin,
+      this.proofDocument});
+
+  factory UserDetails.empty() => UserDetails(
+        // Todo: 1. Remove if not needed
+        // preferredLanguage: Language.english,
+        documentType: '',
+        passportNumbe: '',
+        nicNumber: '',
+        selectedCountryCode: '',
+        mobileNumber: '',
+        emailAddress: '',
+        firstName: '',
+        lastName: '',
+        house: '',
+        streetName: '',
+        city: '',
+        country: '',
+        passportImage: '',
+        visaImage: '',
+        selfieImage: '',
+        pin: '',
+        proofDocument: []
+      );
 }

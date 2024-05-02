@@ -49,7 +49,7 @@ class ApiService {
       throw Exception(ErrorMessages.invalidRequestParametersMessage);
     }
 
-    const url = "";
+    final url = "https://dev-ceylonremit.paymediasolutions.com:5004/api/mobile$endpoint";
 
     late http.Response response;
 

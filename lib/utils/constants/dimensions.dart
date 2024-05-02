@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 class Dimension {
-  Dimension._();
+Dimension._();
 
   static const screenWidthFactor = 8.0;
   static const formTopMargin = 50.0;
@@ -17,4 +20,16 @@ class Dimension {
   static const visaPageImageWidth = 305.0;
   static const proofDocumentImageHeight = 410.0;
   static const proofDocumentImageWidth = 270.0;
+
+
+static double screenHeight = Get.context!.height;
+  static double screenWidth = Get.context!.width;
+
+// Widget builder(BuildContext context){
+//   double height = MediaQuery.of(context).size.height;
+//   double width = MediaQuery.of(context).size.width;
+// }
+
+  // static BuildContext buildContext;
+  // double height = MediaQuery.of(context).size.height;
 }

@@ -16,4 +16,5 @@ class AppColors {
   static const grayButtonColor = Color(0xff404040);
   static const bottomSheetBackgroundColor = Color(0xff3B3B3B);
   static const captureViewGrayColor = Color(0xff404040);
+  static const quickTransferViewColor = Color(0xffF4FFE8);
 }

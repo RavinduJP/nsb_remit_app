@@ -18,6 +18,7 @@ class SignUpDetails extends StatefulWidget {
 }
 
 List options = ['Passport', 'Other'];
+// List<String> dialCodeList = <String>['+94', 'Two', 'Three', 'Four'];
 List<String> dialCodeList = <String>['+94', 'Two', 'Three', 'Four'];
 String selecteddialCode = '+94';
 
@@ -59,7 +60,8 @@ class _SignUpDetailsState extends State<SignUpDetails> {
                     setState(() {
                       currentOption = value.toString();
                     });
-                  }),
+                  },
+                  ),
             ),
             SizedBox(
               width: 170,
@@ -110,20 +112,22 @@ class _SignUpDetailsState extends State<SignUpDetails> {
       ),
       bottomButton: ButtonRow(
         onTap: () {
-          print(currentOption);
-          print(_passportNumbeerController.text);
-          print(_nicNumberController.text);
-          print(selecteddialCode);
-          print(_mobileNumberController.text);
-          print(_emailController.text);
-          // context.read<UserDetailsProvider>().addSignUpDetails(
-          //       documentType: currentOption,
-          //       passportNumber: _passportNumbeerController.text,
-          //       nicNumber: _nicNumberController.text,
-          //       selectedCountryCode: selecteddialCode,
-          //       mobileNumber: _mobileNumberController.text,
-          //       emailAddress: _emailController.text,
-          //     );
+          Provider.of<UserDetailsProvider>(context, listen: false)
+              .addSignUpDetails(
+            documentType: currentOption,
+            passportNumber: _passportNumbeerController.text,
+            nicNumber: _nicNumberController.text,
+            selectedCountryCode: selecteddialCode,
+            mobileNumber: _mobileNumberController.text,
+            emailAddress: _emailController.text,
+            passportImage: '',
+            visaImage: '',
+            selfieImage: '',
+          );
+          final nic = Provider.of<UserDetailsProvider>(context, listen: false)
+              .userDetails
+              .nicNumber;
+          print(nic);
           Navigator.of(context).pushNamed(Routes.otpVerificationScreen);
         },
       ),

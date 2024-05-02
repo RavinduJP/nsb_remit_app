@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
@@ -8,13 +9,18 @@ import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/utils/constants/asset_paths.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 
+import '../../utils/constants/routes.dart';
+
 enum PickMethod { camera, gallery }
 
 class CameraView extends StatefulWidget {
-  const CameraView(
-      {super.key, this.dottedBorderColor = AppColors.bottomSubHeddingColor});
+  CameraView(
+      {super.key,
+      this.dottedBorderColor = AppColors.bottomSubHeddingColor,
+      required this.capturedImageController});
 
   final Color? dottedBorderColor;
+  final TextEditingController capturedImageController;
 
   @override
   State<CameraView> createState() => _CameraViewState();
@@ -33,6 +39,11 @@ class _CameraViewState extends State<CameraView> {
 
       final temporaryImage = File(image.path);
       setState(() => this.image = temporaryImage);
+
+      final bytes = File(temporaryImage!.path).readAsBytesSync();
+      String base64Image = base64Encode(bytes);
+      widget.capturedImageController.text = base64Image;
+      print("img_pan : $base64Image");
     } on PlatformException catch (e) {
       print('Failed to pick Image: $e');
     }
@@ -181,10 +192,11 @@ class _CameraViewState extends State<CameraView> {
             decoration: const BoxDecoration(
                 shape: BoxShape.circle, color: AppColors.secondary),
             child: Center(
-                child: Image.asset(
-              imageName,
-              width: 40,
-            )),
+              child: Image.asset(
+                imageName,
+                width: 40,
+              ),
+            ),
           ),
         ),
         CommonText(

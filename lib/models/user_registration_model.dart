@@ -14,4 +14,13 @@ class RegisterUser {
     this.city,
     this.country,
   });
+
+  factory RegisterUser.empty() => RegisterUser(
+    firstName: '',
+    lastName: '',
+    home: '',
+    streetName: '',
+    city: '',
+    country: '',
+  );
 }
