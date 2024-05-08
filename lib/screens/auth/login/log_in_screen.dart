@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nsb_remit/providers/user_details_provider.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
+import 'package:nsb_remit/utils/constants/dimensions.dart';
 import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/utils/mixins/responsive_layout_mixin.dart';
 import 'package:nsb_remit/widgets/common/common_button.dart';
@@ -11,6 +10,8 @@ import 'package:nsb_remit/widgets/common/common_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/constants/api_endpoints.dart';
+import '../../../utils/constants/api_service.dart';
 import '../../../widgets/common/common_layout.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -23,6 +24,26 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  _displayDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Center(child: Text('Loding .....')),
+            backgroundColor: Colors.white.withOpacity(0.2),
+            content: const SizedBox(
+              height: 50,
+              width: 50,
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.secondary,
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
   final _emailController = TextEditingController();
   final _pinController = TextEditingController();
 
@@ -45,17 +66,17 @@ class _LogInScreenState extends State<LogInScreen> {
                     lableText: "Email Address",
                     hintText: "Enter Your Email Addres",
                   ),
-                  const SizedBox(
-                    height: 20.0,
+                  SizedBox(
+                    height: Dimension.height15,
                   ),
-                  const CommonText(
+                   CommonText(
                     text: 'Enter Your PIN*',
-                    whiteTextSize: 11.0,
+                    whiteTextSize: Dimension.textSize_11,
                     alignment: Alignment.topLeft,
                     // textColor: AppColors.secondary,
                   ),
-                  const SizedBox(
-                    height: 10.0,
+                   SizedBox(
+                    height: Dimension.height10,
                   ),
                   PinCodeTextField(
                     appContext: context,
@@ -67,8 +88,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.underline,
-                      fieldHeight: 30.0,
-                      fieldWidth: 50.0,
+                      fieldHeight: Dimension.height25,
+                      fieldWidth: Dimension.width40,
                       inactiveColor: AppColors.subHeddingColor,
                       activeColor: AppColors.secondary,
                       selectedColor: AppColors.subHeddingColor,
@@ -78,16 +99,16 @@ class _LogInScreenState extends State<LogInScreen> {
                     onCompleted: (value) => print("Completed"),
                     autoDisposeControllers: false,
                   ),
-                  const Row(
+                   Row(
                     children: [
                       CommonText(
                         text: 'Forgot your ',
-                        whiteTextSize: 11.0,
+                        whiteTextSize: Dimension.textSize_11,
                         // alignment: Alignment.topLeft
                       ),
                       CommonText(
                         text: 'PIN?',
-                        whiteTextSize: 11.0,
+                        whiteTextSize: Dimension.textSize_11,
                         textColor: AppColors.secondary,
                         underLine: TextDecoration.underline,
                         underlineColor: AppColors.secondary,
@@ -97,8 +118,8 @@ class _LogInScreenState extends State<LogInScreen> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 15.0,
+                       SizedBox(
+                        height: Dimension.height25,
                       ),
                       CommonButton(
                         bordercolor: AppColors.secondary,
@@ -107,38 +128,70 @@ class _LogInScreenState extends State<LogInScreen> {
                         boxShape: BoxShape.rectangle,
                         buttonText: 'Sign In',
                         btnTextColor: AppColors.primary,
-                        btnFontSize: 14.0,
+                        btnFontSize: Dimension.textSize_14,
                         btnFontWeight: FontWeight.w500,
                         onTap: () {
-                          Navigator.of(context).pushNamed(Routes.homeScreen);
+                          var loginBody = {
+                            "Username": context
+                                .read<UserDetailsProvider>()
+                                .userDetails
+                                .emailAddress,
+                            "Password": context
+                                .read<UserDetailsProvider>()
+                                .userDetails
+                                .pin,
+                            "isBiometric": false,
+                            "deviceUuid": "N6F26Q",
+                            "signature":
+                                "QX+r1rRzD9tZJEWR0lyAbuSRXnADbt+EztbaG3lbTFPH9kCWhd8jcy1GPxU3GR244vXGQoElqcTflx1B1mxyyFQbRd/Wsci8DzsTV6mDzk1rrrpXDdFW60b6KXlY/mtmVDOgq228vXpHqlGjdeeXMIx+hKzC90FmGVUM4kzuqkj46oCGwWGXeaC/PlKeBbd2H39TKDziF0sfNcu0z6mHYSGCW5K/10IBshWeN5wfyTHM0b0lcx+vWA8gFddUOp2OntrziEaNsdObuD8/PkdM6mRY4wJ0SAUzO9PQeSy4ryxP1Cs7Vt5ztLEGSfm6/dvwzhav023szgqxiu9kqnmBTQ=="
+                          };
+                          print(
+                              "EMAIL ::::${context.read<UserDetailsProvider>().userDetails.emailAddress}");
+                          print(
+                              "PIN ::::${context.read<UserDetailsProvider>().userDetails.pin}");
+                          Provider.of<UserDetailsProvider>(context,
+                                  listen: false)
+                              .addLoginDetails(
+                                  emailAddress: _emailController.text,
+                                  pin: _pinController.text);
+                          final email = Provider.of<UserDetailsProvider>(
+                                  context,
+                                  listen: false)
+                              .userDetails
+                              .emailAddress;
+                          print(email);
+
+                          _displayDialog(context);
+                          ApiService.callApi(
+                              ApiEndpoints.loginUser, RequestType.post,
+                              requestBody: loginBody, errorMessages: {}).then(
+                            (value) {
+                              Navigator.of(context).pop();
+                              Navigator.of(context)
+                                  .pushNamed(Routes.homeScreen);
+                            },
+                          );
+
+                          // Navigator.of(context).pushNamed(Routes.homeScreen);
                         },
                       ),
-                      const SizedBox(
-                        height: 10.0,
+                       SizedBox(
+                        height: Dimension.height15,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const CommonText(
+                           CommonText(
                             text: "Don’t have Account? ",
-                            whiteTextSize: 11.0,
+                            whiteTextSize: Dimension.textSize_11,
                           ),
                           CommonText(
                             text: 'Sign Up',
-                            whiteTextSize: 11.0,
+                            whiteTextSize: Dimension.textSize_11,
                             textColor: AppColors.secondary,
                             underLine: TextDecoration.underline,
                             underlineColor: AppColors.secondary,
                             onTap: () {
-                              Provider.of<UserDetailsProvider>(context, listen: false)
-                                  .addLoginDetails(
-                                      emailAddress: _emailController.text,
-                                      pin: _pinController.text);
-                              final email = Provider.of<UserDetailsProvider>(context,
-                                      listen: false)
-                                  .userDetails
-                                  .emailAddress;
-                              print(email);
                               Navigator.of(context)
                                   .pushNamed(Routes.signUpDetailsScreen);
                             },

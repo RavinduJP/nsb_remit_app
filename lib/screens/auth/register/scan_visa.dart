@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../../providers/user_details_provider.dart';
 import '../../../utils/constants/app_colors.dart';
+import '../../../utils/constants/dimensions.dart';
 
 class ScanVisa extends StatelessWidget {
   ScanVisa({super.key});
@@ -14,12 +15,23 @@ class ScanVisa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonLayout(
+      isGrayButtonAvelable: true,
       hedingTitle: 'Scan your Visa Page',
       hedingSubTitle:
           'Place your Visa Page in the middle of the \n bellow box. It’ll automatically get scanned.',
-      body: CameraView(
-        dottedBorderColor: AppColors.bottomSubHeddingColor,
-        capturedImageController: scanVisaImageController,
+      body: Column(
+        children: [
+          SizedBox(
+            height: Dimension.screenHeight * 0.5,
+            child: CameraView(
+              dottedBorderColor: AppColors.bottomSubHeddingColor,
+              capturedImageController: scanVisaImageController,
+            ),
+          ),
+          const SizedBox(
+            height: 8.0,
+          ),
+        ],
       ),
       bottomButton: ButtonRow(
         onTap: () {

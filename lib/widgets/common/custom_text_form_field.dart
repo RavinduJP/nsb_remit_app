@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
+import 'package:nsb_remit/utils/constants/dimensions.dart';
 
 class CustomTextFromField extends StatelessWidget {
   const CustomTextFromField({
@@ -35,47 +36,53 @@ class CustomTextFromField extends StatelessWidget {
       children: [
         Text(
           lableText!,
-          style: const TextStyle(
-              color: Color(0xffF5F5F5),
-              fontSize: 12.0,
+          style: TextStyle(
+              color: AppColors.heddingColor,
+              fontSize: Dimension.textSize_12,
               fontWeight: FontWeight.w400),
         ),
-        const SizedBox(
-          height: 5.0,
+        SizedBox(
+          height: Dimension.height3,
         ),
-        TextFormField(
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: const TextStyle(
-                color: Color(0xff707070),
-                fontSize: 12.0,
-                fontWeight: FontWeight.w400),
-            errorText: errorText,
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: borderColor),
-              borderRadius: BorderRadius.circular(10.0),
+        SizedBox(
+          height: Dimension.screenHeight*0.09,
+          child: TextFormField(
+            decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: TextStyle(
+                  color: AppColors.bottomSubHeddingColor,
+                  fontSize: Dimension.textSize_12,
+                  fontWeight: FontWeight.w400),
+              errorText: errorText,
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: borderColor),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: borderColor),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              suffixIcon: isEnableSuffixIcon!
+                  ? GestureDetector(
+                      onTap: onTap ?? () {},
+                      child: Icon(
+                        Icons.arrow_drop_down,
+                        color: AppColors.textFieldBorderColor,
+                        size: Dimension.height30,
+                      ),
+                    )
+                  : null,
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: borderColor),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            suffixIcon: isEnableSuffixIcon!
-                ? GestureDetector(
-                    onTap: onTap ?? () {},
-                    child: const Icon(
-                      Icons.arrow_drop_down,
-                      color: AppColors.textFieldBorderColor,
-                      size: 30.0,
-                    ),
-                  )
-                : null,
+            cursorColor: AppColors.textFieldBorderColor,
+            style: const TextStyle(color: AppColors.heddingColor),
+            controller: controller,
+            enabled: enabled,
+            onChanged: onChanged,
+            keyboardType: keyboardType,
           ),
-          cursorColor: AppColors.textFieldBorderColor,
-          style: const TextStyle(color: AppColors.heddingColor),
-          controller: controller,
-          enabled: enabled,
-          onChanged: onChanged,
-          keyboardType: keyboardType,
+        ),
+        SizedBox(
+          height: Dimension.height10,
         ),
       ],
     );

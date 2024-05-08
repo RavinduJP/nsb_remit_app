@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
+import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
@@ -32,6 +33,7 @@ class _QuickSetUpState extends State<QuickSetUp> {
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +70,9 @@ class _QuickSetUpState extends State<QuickSetUp> {
           ],
         ),
       ),
-      bottomButton: ButtonRow(onTap: () {}),
+      bottomButton: ButtonRow(onTap: () {
+        Navigator.of(context).pushNamed(Routes.homeScreen);
+      }),
     );
   }
 }

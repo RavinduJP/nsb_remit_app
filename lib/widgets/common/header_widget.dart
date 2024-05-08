@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
-import 'package:nsb_remit/utils/mixins/responsive_layout_mixin.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 
 class HeaderWidget extends StatelessWidget {

@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
-import 'package:provider/provider.dart';
-
-import '../../../providers/security_verification_provider.dart';
 import '../../../utils/constants/app_colors.dart';
 
 class SecurityVerification extends StatefulWidget {
@@ -45,9 +42,11 @@ class _SecurityVerificationState extends State<SecurityVerification> {
         children: [
           //----------------------- first security question -----------------------
           securityQuestion(
+            index: 1,
             securityQuestionHintText: 'Enter your first PET Name',
             securityQuestionList: securityQuestionListOne,
             selectedQestion: selectedQestionOne,
+            securityQuestionController: _securityQuestionOneController,
             securityQuestionAnswerController: _securityQuestionOneAnswer,
           ),
           const SizedBox(
@@ -55,9 +54,11 @@ class _SecurityVerificationState extends State<SecurityVerification> {
           ),
           //----------------------- second security question -----------------------
           securityQuestion(
+              index: 2,
               securityQuestionHintText: 'Enter your Mother’s First Name',
-              securityQuestionList: securityQuestionListTwo,
+              securityQuestionList: securityQuestionListOne,
               selectedQestion: selectedQestionTwo,
+              securityQuestionController: _securityQuestionTwoController,
               securityQuestionAnswerController: _securityQuestionTwoAnswer),
         ],
       ),
@@ -78,7 +79,9 @@ class _SecurityVerificationState extends State<SecurityVerification> {
 
   Column securityQuestion(
       {required String securityQuestionHintText,
+      required int index,
       required TextEditingController securityQuestionAnswerController,
+      required TextEditingController securityQuestionController,
       required List<String> securityQuestionList,
       required String selectedQestion}) {
     return Column(
@@ -96,7 +99,7 @@ class _SecurityVerificationState extends State<SecurityVerification> {
           ),
           padding: const EdgeInsets.symmetric(horizontal: 13.0, vertical: 6.0),
           child: DropdownButton(
-            value: selectedQestion,
+            value: index == 1 ? selectedQestionOne : selectedQestionTwo,
             elevation: 16,
             style: const TextStyle(color: AppColors.bottomSubHeddingColor),
             icon: const Icon(
@@ -110,7 +113,14 @@ class _SecurityVerificationState extends State<SecurityVerification> {
             ),
             onChanged: (String? value) {
               setState(() {
-                selectedQestion = value!;
+                securityQuestionController.text = value!;
+                //securityQuestionList.remove(value);
+                
+                if (index == 1) {
+                  selectedQestionOne = value;
+                } else if (index == 2) {
+                  selectedQestionTwo = value;
+                }
               });
             },
             items: securityQuestionList

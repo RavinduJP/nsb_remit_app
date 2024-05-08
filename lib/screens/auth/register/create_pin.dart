@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nsb_remit/models/user_details_model.dart';
 import 'package:nsb_remit/providers/user_details_provider.dart';
 import 'package:nsb_remit/utils/constants/api_endpoints.dart';
 import 'package:nsb_remit/utils/constants/api_service.dart';
@@ -24,12 +23,14 @@ class _CreatePinState extends State<CreatePin> {
     return showDialog(
         context: context,
         builder: (context) {
-          return const AlertDialog(
-            title: Text('Loding .....'),
-            content: SizedBox(
-              height: 300,
+          return AlertDialog(
+            title: const Center(child: Text('Loding .....')),
+            backgroundColor: Colors.white.withOpacity(0.2),
+            content: const SizedBox(
+              height: 50,
+              width: 50,
               child: Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(color: AppColors.secondary,),
               ),
             ),
           );
@@ -132,14 +133,14 @@ class _CreatePinState extends State<CreatePin> {
         print(createPinController.text);
         print(confirmPinController.text);
 
-        // Navigator.of(context).pushNamed(Routes.quickSetUpScreen);
+        Navigator.of(context).pushNamed(Routes.quickSetUpScreen);
         // context.read<UserDetails>().city;
         _displayDialog(context);
         ApiService.callApi(ApiEndpoints.registerUser, RequestType.post,
             requestBody: registerBody, errorMessages: {}).then(
           (value) {
             Navigator.of(context).pop();
-            //Navigator.of(context).pop();
+            Navigator.of(context).pushNamed(Routes.quickSetUpScreen);
           },
         );
 

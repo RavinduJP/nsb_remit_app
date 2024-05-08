@@ -7,6 +7,7 @@ import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/constants/app_colors.dart';
+import '../../../utils/constants/dimensions.dart';
 
 class ScanPassport extends StatelessWidget {
   ScanPassport({super.key});
@@ -16,12 +17,23 @@ class ScanPassport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonLayout(
+      isGrayButtonAvelable: true,
       hedingTitle: 'Scan your Passport',
       hedingSubTitle:
           'Place your Passport in the middle of the \n bellow box. It’ll automatically get scanned.',
-      body: CameraView(
-        dottedBorderColor: AppColors.bottomSubHeddingColor,
-        capturedImageController: scanPassportImageController,
+      body: Column(
+        children: [
+          SizedBox(
+            height: Dimension.screenHeight*0.5,
+            child: CameraView(
+              dottedBorderColor: AppColors.bottomSubHeddingColor,
+              capturedImageController: scanPassportImageController,
+            ),
+          ),
+          const SizedBox(
+            height: 8.0,
+          ),
+        ],
       ),
       bottomButton: ButtonRow(
         isEnableGreyBtn: true,

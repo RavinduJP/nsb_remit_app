@@ -22,7 +22,7 @@ class _OtpVerificationState extends State<OtpVerification> {
     return CommonLayout(
       hedingTitle: 'OTP Verification',
       hedingSubTitle:
-          'We have send to OTP to \n +94011646038 & youremail@gmail.com \n Please check your mobile and \n enter the OTP code ',
+          'We have send to OTP to \n +94011646038 & youremail@gmail.com \n Please check your mobile and enter the OTP code ',
       maxLine: 4,
       body: Column(
         children: [

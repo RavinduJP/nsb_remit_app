@@ -9,7 +9,7 @@ import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/utils/constants/asset_paths.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 
-import '../../utils/constants/routes.dart';
+import '../../utils/constants/dimensions.dart';
 
 enum PickMethod { camera, gallery }
 
@@ -57,19 +57,20 @@ class _CameraViewState extends State<CameraView> {
       strokeWidth: 2.0,
       dashPattern: const [15, 4],
       radius: const Radius.circular(20.0),
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
       borderPadding: const EdgeInsets.symmetric(horizontal: 30.0),
       borderType: BorderType.RRect,
       child: SizedBox(
         width: double.maxFinite,
-        height: 380,
+        //height: Dimension.passportImageHeight,
         child: GestureDetector(
           child: Center(
             child: image == null
                 ? Container(
                     height: double.maxFinite,
                     margin: const EdgeInsets.symmetric(
-                        horizontal: 40.0, vertical: 8.0),
+                      horizontal: 30.0,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.captureViewGrayColor,
                       borderRadius: BorderRadius.circular(20.0),
@@ -84,7 +85,7 @@ class _CameraViewState extends State<CameraView> {
                   )
                 : Center(
                     child: Container(
-                      height: 300,
+                      height: Dimension.passportImageHeight,
                       width: 200,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
@@ -129,7 +130,7 @@ class _CameraViewState extends State<CameraView> {
       context: context,
       builder: (BuildContext context) {
         return SizedBox(
-          height: 200.0,
+          height: Dimension.screenHeight*0.35,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Column(
@@ -141,10 +142,10 @@ class _CameraViewState extends State<CameraView> {
                   color: AppColors.bottomSubHeddingColor,
                   margin: const EdgeInsets.only(top: 10.0),
                 ),
-                const CommonText(
+                 CommonText(
                   text:
                       'Please select the relevant method\nof uploading your passport image',
-                  whiteTextSize: 16.0,
+                  whiteTextSize: Dimension.textSize_14,
                   fontWeight: FontWeight.w500,
                 ),
                 Row(
@@ -204,6 +205,9 @@ class _CameraViewState extends State<CameraView> {
           whiteTextSize: 14.0,
           fontWeight: FontWeight.w500,
           textColor: AppColors.whiteColor,
+        ),
+        const SizedBox(
+          height: 15.0,
         )
       ],
     );

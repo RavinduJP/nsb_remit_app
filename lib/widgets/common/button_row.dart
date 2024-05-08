@@ -5,6 +5,8 @@ import 'package:nsb_remit/widgets/common/custom_back_button.dart';
 import 'package:nsb_remit/widgets/common/gray_button.dart';
 import 'package:nsb_remit/widgets/common/next_button.dart';
 
+import '../../utils/constants/dimensions.dart';
+
 class ButtonRow extends StatelessWidget {
   const ButtonRow({
     super.key,
@@ -24,7 +26,7 @@ class ButtonRow extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50.0),
+          padding: EdgeInsets.symmetric(horizontal: Dimension.width50),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -42,12 +44,16 @@ class ButtonRow extends StatelessWidget {
             ],
           ),
         ),
+        const SizedBox(
+          height: 8.0,
+        ),
         isEnableGreyBtn!
             ? GrayButton(
                 grayButtonText: grayButtonText ?? '',
                 onTap: onTapGreyButton ?? () {},
               )
-            : Container(),
+            : Container(
+            ),
       ],
     );
   }

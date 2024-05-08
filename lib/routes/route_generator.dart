@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nsb_remit/screens/auth/login/log_in_screen.dart';
 import 'package:nsb_remit/screens/auth/register/otp_verification.dart';
 import 'package:nsb_remit/screens/auth/register/proof_documents.dart';
 import 'package:nsb_remit/screens/auth/register/quick_setup.dart';
@@ -20,6 +21,11 @@ class RouteGenerator {
       case Routes.splashScreen:
         return MaterialPageRoute(
           builder: (_) => const SplashScreen(),
+        );
+
+        case Routes.logInScreen:
+        return MaterialPageRoute(
+          builder: (_) => const LogInScreen(),
         );
 
       case Routes.homeScreen:

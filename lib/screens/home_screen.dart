@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/utils/constants/asset_paths.dart';
+import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 import '../utils/constants/dimensions.dart';
 import '../widgets/common/header_widget.dart';
@@ -127,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pushNamed(Routes.logInScreen);
                   },
                   child: Text('BACK')),
             ],

@@ -37,59 +37,67 @@ class CommonLayout extends StatelessWidget {
         backgroundColor: AppColors.primary,
         body: Padding(
           padding: const EdgeInsets.symmetric(
-              horizontal: Dimension.screenWidthFactor),
-          child: Container(
-            width: double.maxFinite,
-            child: Column(
-              children: [
-                Text(
-                  hedingTitle,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: fontFamily ?? '',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25.0,
-                    color: AppColors.heddingColor,
-                  ),
-                ),
-                const SizedBox(
-                  height: 15.0,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    hedingSubTitle,
-                    textAlign: TextAlign.center,
-                    maxLines: maxLine,
-                    style: TextStyle(
-                      fontFamily: fontFamily ?? '',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12.0,
-                      color: AppColors.subHeddingColor,
+              horizontal: Dimension.screenWidthFactor,              
+              ),
+          child: Column(
+            children: [
+              SizedBox(
+                width: double.maxFinite,
+                height: Dimension.screenHeight*0.2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: Dimension.screenHeight*0.04,),
+                    Text(
+                      hedingTitle,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: fontFamily ?? '',
+                        fontWeight: FontWeight.bold,
+                        fontSize: Dimension.textSize_20,
+                        color: AppColors.heddingColor,
+                      ),
                     ),
-                  ),
+                    SizedBox(
+                      height: Dimension.height10,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Dimension.width10),
+                      child: Text(
+                        hedingSubTitle,
+                        textAlign: TextAlign.center,
+                        maxLines: maxLine,
+                        style: TextStyle(
+                          fontFamily: fontFamily ?? '',
+                          fontWeight: FontWeight.w400,
+                          fontSize: Dimension.textSize_11,
+                          color: AppColors.subHeddingColor,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Dimension.height20,
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                Container(
-                  child: body,
-                ),
-                // const SizedBox(
-                //   height: 10.0,
-                // ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: Dimension.screenHeight*0.55,
+                child: body,
+              ),
+            ],
           ),
         ),
         bottomNavigationBar: SizedBox(
-          height: !isGrayButtonAvelable! ? 140.0 : 90.0,
+          // height: isGrayButtonAvelable! ? Dimension.bottomButtonsMaxHeight : Dimension.bottomButtonsMinHeight,
+          // height: isGrayButtonAvelable! ? 140 : 90,
+          height: isGrayButtonAvelable! ? Dimension.screenHeight*0.215 : Dimension.screenHeight*0.15,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               bottomButton,
-              const SizedBox(
-                height: 15.0,
+              SizedBox(
+                height: Dimension.height20,
               ),
               const BottomNavigationText(),
             ],
@@ -106,17 +114,17 @@ class BottomNavigationText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.only(bottom: Dimension.height20),
       child: RichText(
         textAlign: TextAlign.center,
-        text: const TextSpan(
+        text: TextSpan(
           children: [
             TextSpan(
               text: 'National Saving Bank\n',
               style: TextStyle(
                 // fontFamily: fontFamily ?? '',
                 fontWeight: FontWeight.w400,
-                fontSize: 10.0,
+                fontSize: Dimension.textSize_10,
                 color: AppColors.bottomSubHeddingColor,
               ),
             ),
@@ -125,7 +133,7 @@ class BottomNavigationText extends StatelessWidget {
               style: TextStyle(
                 // fontFamily: fontFamily ?? '',
                 fontWeight: FontWeight.w400,
-                fontSize: 8.0,
+                fontSize: Dimension.textSize_8,
                 color: AppColors.bottomSubHeddingColor,
               ),
             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 
+import '../../utils/constants/dimensions.dart';
+
 class NextButton extends StatelessWidget {
   const NextButton({super.key, required this.onTap});
 
@@ -11,7 +13,8 @@ class NextButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
+        padding: EdgeInsets.symmetric(
+            vertical: Dimension.height8, horizontal: Dimension.width20),
         // margin: const EdgeInsets.symmetric(horizontal: 70.0, vertical: 5.0),
         decoration: BoxDecoration(
             border: Border.all(
@@ -22,12 +25,12 @@ class NextButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(9.0),
             color: AppColors.secondary,
             shape: BoxShape.rectangle),
-        child: const Center(
+        child: Center(
           child: Text(
             'Next',
             style: TextStyle(
               color: AppColors.primary,
-              fontSize: 14.0,
+              fontSize: Dimension.textSize_14,
               fontWeight: FontWeight.w500,
             ),
           ),

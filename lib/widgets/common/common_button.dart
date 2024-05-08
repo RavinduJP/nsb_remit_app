@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
+import '../../utils/constants/dimensions.dart';
+
 class CommonButton extends StatelessWidget {
   const CommonButton({
     super.key,
@@ -29,7 +31,8 @@ class CommonButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        padding: EdgeInsets.symmetric(
+            vertical: Dimension.height8, horizontal: Dimension.width20),
         margin: const EdgeInsets.symmetric(horizontal: 70.0, vertical: 5.0),
         decoration: BoxDecoration(
             border: Border.all(
