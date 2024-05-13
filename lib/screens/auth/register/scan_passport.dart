@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/providers/user_details_provider.dart';
 import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
@@ -7,7 +8,6 @@ import 'package:nsb_remit/widgets/common/common_layout.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/constants/app_colors.dart';
-import '../../../utils/constants/dimensions.dart';
 
 class ScanPassport extends StatelessWidget {
   ScanPassport({super.key});
@@ -24,7 +24,7 @@ class ScanPassport extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: Dimension.screenHeight*0.5,
+            height: 340.h,
             child: CameraView(
               dottedBorderColor: AppColors.bottomSubHeddingColor,
               capturedImageController: scanPassportImageController,

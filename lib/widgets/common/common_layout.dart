@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/utils/constants/dimensions.dart';
 
@@ -37,32 +38,34 @@ class CommonLayout extends StatelessWidget {
         backgroundColor: AppColors.primary,
         body: Padding(
           padding: const EdgeInsets.symmetric(
-              horizontal: Dimension.screenWidthFactor,              
-              ),
+            horizontal: Dimension.screenWidthFactor,
+          ),
           child: Column(
             children: [
               SizedBox(
                 width: double.maxFinite,
-                height: Dimension.screenHeight*0.2,
+                height: 140.h,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(height: Dimension.screenHeight*0.04,),
+                    SizedBox(
+                      height: 20.h,
+                    ),
                     Text(
                       hedingTitle,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: fontFamily ?? '',
                         fontWeight: FontWeight.bold,
-                        fontSize: Dimension.textSize_20,
+                        fontSize: 25.r,
                         color: AppColors.heddingColor,
                       ),
                     ),
                     SizedBox(
-                      height: Dimension.height10,
+                      height: 10.h,
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: Dimension.width10),
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
                       child: Text(
                         hedingSubTitle,
                         textAlign: TextAlign.center,
@@ -70,19 +73,19 @@ class CommonLayout extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: fontFamily ?? '',
                           fontWeight: FontWeight.w400,
-                          fontSize: Dimension.textSize_11,
+                          fontSize: 11.r,
                           color: AppColors.subHeddingColor,
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: Dimension.height20,
+                      height: 20.h,
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: Dimension.screenHeight*0.55,
+                height: 380.h,
                 child: body,
               ),
             ],
@@ -91,13 +94,13 @@ class CommonLayout extends StatelessWidget {
         bottomNavigationBar: SizedBox(
           // height: isGrayButtonAvelable! ? Dimension.bottomButtonsMaxHeight : Dimension.bottomButtonsMinHeight,
           // height: isGrayButtonAvelable! ? 140 : 90,
-          height: isGrayButtonAvelable! ? Dimension.screenHeight*0.215 : Dimension.screenHeight*0.15,
+          height: isGrayButtonAvelable! ? 160.h : 107.h,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               bottomButton,
               SizedBox(
-                height: Dimension.height20,
+                height: 20.h,
               ),
               const BottomNavigationText(),
             ],
@@ -114,7 +117,7 @@ class BottomNavigationText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: Dimension.height20),
+      padding: EdgeInsets.only(bottom: 20.h),
       child: RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
@@ -124,7 +127,7 @@ class BottomNavigationText extends StatelessWidget {
               style: TextStyle(
                 // fontFamily: fontFamily ?? '',
                 fontWeight: FontWeight.w400,
-                fontSize: Dimension.textSize_10,
+                fontSize: 10.h,
                 color: AppColors.bottomSubHeddingColor,
               ),
             ),
@@ -133,7 +136,7 @@ class BottomNavigationText extends StatelessWidget {
               style: TextStyle(
                 // fontFamily: fontFamily ?? '',
                 fontWeight: FontWeight.w400,
-                fontSize: Dimension.textSize_8,
+                fontSize: 8.h,
                 color: AppColors.bottomSubHeddingColor,
               ),
             ),

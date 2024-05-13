@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
-import 'package:nsb_remit/utils/constants/dimensions.dart';
 
 class CustomTextFromField extends StatelessWidget {
   const CustomTextFromField({
@@ -38,20 +38,20 @@ class CustomTextFromField extends StatelessWidget {
           lableText!,
           style: TextStyle(
               color: AppColors.heddingColor,
-              fontSize: Dimension.textSize_12,
+              fontSize: 12.r,
               fontWeight: FontWeight.w400),
         ),
         SizedBox(
-          height: Dimension.height3,
+          height: 5.h,
         ),
         SizedBox(
-          height: Dimension.screenHeight*0.09,
+          height: 50.h,
           child: TextFormField(
             decoration: InputDecoration(
               hintText: hintText,
               hintStyle: TextStyle(
                   color: AppColors.bottomSubHeddingColor,
-                  fontSize: Dimension.textSize_12,
+                  fontSize: 12.r,
                   fontWeight: FontWeight.w400),
               errorText: errorText,
               enabledBorder: OutlineInputBorder(
@@ -68,7 +68,7 @@ class CustomTextFromField extends StatelessWidget {
                       child: Icon(
                         Icons.arrow_drop_down,
                         color: AppColors.textFieldBorderColor,
-                        size: Dimension.height30,
+                        size: 30.h,
                       ),
                     )
                   : null,
@@ -82,7 +82,7 @@ class CustomTextFromField extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: Dimension.height10,
+          height: 10.h,
         ),
       ],
     );

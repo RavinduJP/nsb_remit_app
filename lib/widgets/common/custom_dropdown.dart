@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+
 
 class CustomDropDown extends StatefulWidget {
-  CustomDropDown({
+   const CustomDropDown({
     super.key,
     required this.itemList,
     required this.selectedItem,
@@ -13,7 +14,7 @@ class CustomDropDown extends StatefulWidget {
   });
 
   final List<String> itemList;
-  String selectedItem;
+  final String selectedItem;
   final String? lableText;
   final TextEditingController countryController;
 
@@ -23,7 +24,8 @@ class CustomDropDown extends StatefulWidget {
 
 class _CustomDropDownState extends State<CustomDropDown> {
   // final screenHeight = MediaQuery.of(context).size.height;
-  String selectedValue = list.first;
+  String? selectedValue;
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,13 +33,13 @@ class _CustomDropDownState extends State<CustomDropDown> {
       children: [
         Text(
           widget.lableText!,
-          style: const TextStyle(
-              color: Color(0xffF5F5F5),
-              fontSize: 12.0,
+          style: TextStyle(
+              color: const Color(0xffF5F5F5),
+              fontSize: 12.r,
               fontWeight: FontWeight.w400),
         ),
-        const SizedBox(
-          height: 5.0,
+         SizedBox(
+          height: 5.h,
         ),
         Container(
           decoration: BoxDecoration(
@@ -48,17 +50,17 @@ class _CustomDropDownState extends State<CustomDropDown> {
             ),
             borderRadius: BorderRadius.circular(10.0),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 6.0),
+          padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 3.h),
           child: DropdownButton(
-            value: widget.selectedItem,
+            value:selectedValue?? widget.selectedItem,
             elevation: 16,
             style: const TextStyle(color: AppColors.bottomSubHeddingColor),
-            icon: const Padding(
-              padding: EdgeInsets.only(left: 150.0),
+            icon: Padding(
+              padding: EdgeInsets.only(left: 150.sp),
               child: Icon(
                 Icons.arrow_drop_down,
                 color: AppColors.textFieldBorderColor,
-                size: 25.0,
+                size: 25.sp,
               ),
             ),
             underline: Container(
@@ -68,23 +70,23 @@ class _CustomDropDownState extends State<CustomDropDown> {
             onChanged: (String? value) {
               setState(() {
                 widget.countryController.text = value!;
-                widget.selectedItem = value!;
+                selectedValue = value;
               });
             },
             items:
                 widget.itemList.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 100.0),
+                child: 
+                   Padding(
+                    padding: EdgeInsets.only(right: 100.w),
                     child: Text(
                       value,
-                      style: const TextStyle(
-                          color: AppColors.subHeddingColor, fontSize: 14.0),
+                      style: TextStyle(
+                          color: AppColors.subHeddingColor, fontSize: 14.r),
                     ),
                   ),
-                ),
+                
               );
             }).toList(),
           ),

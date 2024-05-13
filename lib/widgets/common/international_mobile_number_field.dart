@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/constants/app_colors.dart';
-import '../../utils/constants/dimensions.dart';
 
 class InternationalMobileNumberField extends StatefulWidget {
-  InternationalMobileNumberField({
+  const InternationalMobileNumberField({
     super.key,
     this.errorText,
     required this.borderColor,
@@ -20,7 +20,7 @@ class InternationalMobileNumberField extends StatefulWidget {
   final bool isHighlighted;
   final void Function(String)? onChanged;
   final List<String> list;
-  String selectedCountryCode;
+  final String selectedCountryCode;
   final TextEditingController mobileNumberControler;
   final TextEditingController? countryCodeControler;
 
@@ -31,6 +31,7 @@ class InternationalMobileNumberField extends StatefulWidget {
 
 class _InternationalMobileNumberFieldState
     extends State<InternationalMobileNumberField> {
+  String selectedCountry = "";
   @override
   Widget build(BuildContext context) {
     Color borderColor =
@@ -43,22 +44,22 @@ class _InternationalMobileNumberFieldState
             Flexible(
               flex: 1,
               child: Padding(
-                padding: EdgeInsets.only(right: Dimension.width10),
+                padding: EdgeInsets.only(right: 10.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   Text(
+                    Text(
                       'Mobile Number',
                       style: TextStyle(
                           color: AppColors.heddingColor,
-                          fontSize: Dimension.textSize_12,
+                          fontSize: 12.r,
                           fontWeight: FontWeight.w400),
                     ),
-                     SizedBox(
-                      height: Dimension.height3,
+                    SizedBox(
+                      height: 5.h,
                     ),
                     Container(
-                      height: Dimension.screenHeight * 0.09,
+                      height: 50.h,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: AppColors.textFieldBorderColor,
@@ -67,17 +68,17 @@ class _InternationalMobileNumberFieldState
                         ),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 13.0, vertical: 6.0),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 13.w, vertical: 6.h),
                       child: DropdownButton(
                         value: widget.selectedCountryCode,
                         elevation: 16,
-                        style:
-                            const TextStyle(color: AppColors.bottomSubHeddingColor),
-                        icon: const Icon(
+                        style: const TextStyle(
+                            color: AppColors.bottomSubHeddingColor),
+                        icon: Icon(
                           Icons.arrow_drop_down,
                           color: AppColors.heddingColor,
-                          size: 25.0,
+                          size: 25.sp,
                         ),
                         underline: Container(
                           height: 0,
@@ -86,7 +87,7 @@ class _InternationalMobileNumberFieldState
                         onChanged: (String? value) {
                           setState(() {
                             widget.countryCodeControler!.text = value!;
-                            widget.selectedCountryCode = value;
+                       selectedCountry = value;
                           });
                         },
                         items: widget.list
@@ -96,9 +97,9 @@ class _InternationalMobileNumberFieldState
                             child: Container(
                               child: Text(
                                 value,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: AppColors.subHeddingColor,
-                                    fontSize: 14.0),
+                                    fontSize: 14.r),
                               ),
                             ),
                           );
@@ -115,26 +116,26 @@ class _InternationalMobileNumberFieldState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   Text(
-                    '',
+                  Text(
+                    ' ',
                     style: TextStyle(
                         color: AppColors.heddingColor,
-                        fontSize: Dimension.textSize_12,
+                        fontSize: 12.r,
                         fontWeight: FontWeight.w400),
                   ),
-                 SizedBox(
-                    height: Dimension.height3,
+                  SizedBox(
+                    height: 5.h,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 5.0),
                     child: SizedBox(
-                      height: Dimension.screenHeight*0.09,
+                      height: 50.h,
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Mobile Number',
                           hintStyle: TextStyle(
                             color: AppColors.bottomSubHeddingColor,
-                            fontSize: Dimension.textSize_12,
+                            fontSize: 12.r,
                             fontWeight: FontWeight.w400,
                           ),
                           enabledBorder: OutlineInputBorder(
@@ -161,7 +162,7 @@ class _InternationalMobileNumberFieldState
           ],
         ),
         SizedBox(
-          height: Dimension.height10,
+          height: 10.h,
         ),
       ],
     );

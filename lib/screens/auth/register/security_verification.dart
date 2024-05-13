@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
@@ -97,15 +98,15 @@ class _SecurityVerificationState extends State<SecurityVerification> {
             ),
             borderRadius: BorderRadius.circular(10.0),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 13.0, vertical: 6.0),
+          padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 6.h),
           child: DropdownButton(
             value: index == 1 ? selectedQestionOne : selectedQestionTwo,
             elevation: 16,
             style: const TextStyle(color: AppColors.bottomSubHeddingColor),
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_drop_down,
               color: AppColors.textFieldBorderColor,
-              size: 25.0,
+              size: 25.sp,
             ),
             underline: Container(
               height: 0,
@@ -115,7 +116,7 @@ class _SecurityVerificationState extends State<SecurityVerification> {
               setState(() {
                 securityQuestionController.text = value!;
                 //securityQuestionList.remove(value);
-                
+
                 if (index == 1) {
                   selectedQestionOne = value;
                 } else if (index == 2) {
@@ -128,11 +129,11 @@ class _SecurityVerificationState extends State<SecurityVerification> {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Container(
-                  padding: const EdgeInsets.only(right: 100.0),
+                  padding: EdgeInsets.only(right: 100.w),
                   child: Text(
                     value,
-                    style: const TextStyle(
-                        color: AppColors.subHeddingColor, fontSize: 14.0),
+                    style: TextStyle(
+                        color: AppColors.subHeddingColor, fontSize: 14.r),
                   ),
                 ),
               );
@@ -145,11 +146,11 @@ class _SecurityVerificationState extends State<SecurityVerification> {
         TextFormField(
           decoration: InputDecoration(
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
+                EdgeInsets.symmetric(vertical: 30.h, horizontal: 10.w),
             hintText: securityQuestionHintText,
-            hintStyle: const TextStyle(
-                color: Color(0xff707070),
-                fontSize: 12.0,
+            hintStyle: TextStyle(
+                color: const Color(0xff707070),
+                fontSize: 12.r,
                 fontWeight: FontWeight.w400),
             border: OutlineInputBorder(
               borderSide:

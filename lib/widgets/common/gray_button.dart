@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/constants/app_colors.dart';
 import 'common_button.dart';
@@ -10,7 +11,7 @@ class GrayButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      padding: EdgeInsets.symmetric(horizontal: 30.w),
       child: CommonButton(
         bordercolor: AppColors.secondary,
         borderWidth: 1.0,
@@ -18,7 +19,7 @@ class GrayButton extends StatelessWidget {
         boxShape: BoxShape.rectangle,
         buttonText: grayButtonText!,
         btnTextColor: AppColors.whiteColor,
-        btnFontSize: 14.0,
+        btnFontSize: 14.r,
         btnFontWeight: FontWeight.w600,
         onTap: onTap!,
       ),

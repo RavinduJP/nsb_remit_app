@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/providers/user_details_provider.dart';
 import 'package:nsb_remit/utils/constants/api_endpoints.dart';
 import 'package:nsb_remit/utils/constants/api_service.dart';
@@ -30,7 +31,9 @@ class _CreatePinState extends State<CreatePin> {
               height: 50,
               width: 50,
               child: Center(
-                child: CircularProgressIndicator(color: AppColors.secondary,),
+                child: CircularProgressIndicator(
+                  color: AppColors.secondary,
+                ),
               ),
             ),
           );
@@ -45,13 +48,13 @@ class _CreatePinState extends State<CreatePin> {
       hedingTitle: 'Create PIN',
       hedingSubTitle: 'You can setup PIN to login your \n account with ease!',
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 80.0),
+        padding: EdgeInsets.symmetric(horizontal: 80.w),
         child: Column(
           children: [
             CreatePinField(
                 controller: createPinController, pinHeader: 'Enter Your PIN*'),
-            const SizedBox(
-              height: 20.0,
+            SizedBox(
+              height: 20.h,
             ),
             CreatePinField(
                 controller: confirmPinController,
@@ -165,7 +168,7 @@ class CreatePinField extends StatelessWidget {
       children: [
         CommonText(
           text: pinHeader,
-          whiteTextSize: 11.0,
+          whiteTextSize: 11.r,
           alignment: Alignment.topLeft,
         ),
         PinCodeTextField(
@@ -174,22 +177,22 @@ class CreatePinField extends StatelessWidget {
           length: 4,
           obscureText: true,
           obscuringCharacter: '*',
-          textStyle: const TextStyle(
+          textStyle: TextStyle(
             color: AppColors.heddingColor,
-            fontSize: 20.0,
+            fontSize: 20.r,
             fontWeight: FontWeight.w600,
           ),
           hintCharacter: '-',
-          hintStyle: const TextStyle(
+          hintStyle: TextStyle(
               color: AppColors.heddingColor,
-              fontSize: 20.0,
+              fontSize: 20.r,
               fontWeight: FontWeight.w600),
           showCursor: true,
           keyboardType: TextInputType.number,
           pinTheme: PinTheme(
             shape: PinCodeFieldShape.underline,
-            fieldHeight: 36.0,
-            fieldWidth: 50.0,
+            fieldHeight: 36.h,
+            fieldWidth: 50.w,
             inactiveColor: AppColors.subHeddingColor,
             activeColor: AppColors.subHeddingColor,
             selectedColor: AppColors.subHeddingColor,

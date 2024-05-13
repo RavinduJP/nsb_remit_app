@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/providers/user_details_provider.dart';
 import 'package:nsb_remit/screens/auth/login/log_in_screen.dart';
 import 'package:provider/provider.dart';
@@ -27,17 +27,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    //------------------------------------------------
-    // print('Width : ' +
-    //     MediaQuery.of(context).size.width.toString());
-    // print('Height : ' +
-    //     MediaQuery.of(context).size.height.toString());
-    //------------------------------------------------
-    return const  GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.generateRoute,
-      home:
-          LogInScreen(),
-    );
+    return ScreenUtilInit(
+        designSize: const Size(411.4, 707.4),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) => const MaterialApp(
+              debugShowCheckedModeBanner: false,
+              onGenerateRoute: RouteGenerator.generateRoute,
+              home: LogInScreen(),
+            ));
   }
 }

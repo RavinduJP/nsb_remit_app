@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
-
-import '../../utils/constants/dimensions.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({
@@ -16,7 +15,7 @@ class CustomBackButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.pop(context),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: Dimension.height8, horizontal: Dimension.width20),
+        padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 20.w),
         // margin: const EdgeInsets.symmetric(horizontal: 70.0, vertical: 5.0),
         decoration: BoxDecoration(
             border: Border.all(
@@ -32,7 +31,7 @@ class CustomBackButton extends StatelessWidget {
             'Back',
             style: TextStyle(
               color: AppColors.heddingColor,
-              fontSize: Dimension.textSize_14,
+              fontSize: 14.r,
               fontWeight: FontWeight.w500,
             ),
           ),

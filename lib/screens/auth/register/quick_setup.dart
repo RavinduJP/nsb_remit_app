@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
@@ -30,24 +31,24 @@ class _QuickSetUpState extends State<QuickSetUp> {
       hedingSubTitle:
           'Please fill the following details for your \n Security purpose ',
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CommonText(
                   alignment: Alignment.topLeft,
                   text: 'Biometrics',
-                  whiteTextSize: 11.0,
+                  whiteTextSize: 11.r,
                   fontWeight: FontWeight.w600,
                 ),
                 CommonText(
                   alignment: Alignment.topLeft,
                   text: 'Enable biometrics for secure and \nfast sign-in.',
-                  whiteTextSize: 12.0,
+                  whiteTextSize: 12.r,
                   fontWeight: FontWeight.w400,
                   textColor: AppColors.bottomSubHeddingColor,
                 )

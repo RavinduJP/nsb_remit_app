@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/user_details_provider.dart';
 import '../../../utils/constants/app_colors.dart';
-import '../../../utils/constants/dimensions.dart';
 import '../../../utils/constants/routes.dart';
 import '../../../widgets/common/button_row.dart';
 import '../../../widgets/common/camera_view.dart';
@@ -21,7 +21,7 @@ class UploadSelfie extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: Dimension.screenHeight * 0.5,
+            height: 340.h,
             child: CameraView(
               dottedBorderColor: AppColors.bottomSubHeddingColor,
               capturedImageController: uploadSelfieImageController,

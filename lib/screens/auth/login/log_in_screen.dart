@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/providers/user_details_provider.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
-import 'package:nsb_remit/utils/constants/dimensions.dart';
 import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/utils/mixins/responsive_layout_mixin.dart';
 import 'package:nsb_remit/widgets/common/common_button.dart';
@@ -67,16 +67,16 @@ class _LogInScreenState extends State<LogInScreen> {
                     hintText: "Enter Your Email Addres",
                   ),
                   SizedBox(
-                    height: Dimension.height15,
+                    height: 10.h,
                   ),
-                   CommonText(
+                  CommonText(
                     text: 'Enter Your PIN*',
-                    whiteTextSize: Dimension.textSize_11,
+                    whiteTextSize: 11.r,
                     alignment: Alignment.topLeft,
                     // textColor: AppColors.secondary,
                   ),
-                   SizedBox(
-                    height: Dimension.height10,
+                  SizedBox(
+                    height: 10.h,
                   ),
                   PinCodeTextField(
                     appContext: context,
@@ -88,8 +88,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.underline,
-                      fieldHeight: Dimension.height25,
-                      fieldWidth: Dimension.width40,
+                      fieldHeight: 30.h,
+                      fieldWidth: 40.w,
                       inactiveColor: AppColors.subHeddingColor,
                       activeColor: AppColors.secondary,
                       selectedColor: AppColors.subHeddingColor,
@@ -99,16 +99,16 @@ class _LogInScreenState extends State<LogInScreen> {
                     onCompleted: (value) => print("Completed"),
                     autoDisposeControllers: false,
                   ),
-                   Row(
+                  Row(
                     children: [
                       CommonText(
                         text: 'Forgot your ',
-                        whiteTextSize: Dimension.textSize_11,
+                        whiteTextSize: 11.r,
                         // alignment: Alignment.topLeft
                       ),
                       CommonText(
                         text: 'PIN?',
-                        whiteTextSize: Dimension.textSize_11,
+                        whiteTextSize: 11.r,
                         textColor: AppColors.secondary,
                         underLine: TextDecoration.underline,
                         underlineColor: AppColors.secondary,
@@ -118,8 +118,8 @@ class _LogInScreenState extends State<LogInScreen> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                       SizedBox(
-                        height: Dimension.height25,
+                      SizedBox(
+                        height: 25.h,
                       ),
                       CommonButton(
                         bordercolor: AppColors.secondary,
@@ -128,7 +128,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         boxShape: BoxShape.rectangle,
                         buttonText: 'Sign In',
                         btnTextColor: AppColors.primary,
-                        btnFontSize: Dimension.textSize_14,
+                        btnFontSize: 14.r,
                         btnFontWeight: FontWeight.w500,
                         onTap: () {
                           var loginBody = {
@@ -175,19 +175,19 @@ class _LogInScreenState extends State<LogInScreen> {
                           // Navigator.of(context).pushNamed(Routes.homeScreen);
                         },
                       ),
-                       SizedBox(
-                        height: Dimension.height15,
+                      SizedBox(
+                        height: 15.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                           CommonText(
+                          CommonText(
                             text: "Don’t have Account? ",
-                            whiteTextSize: Dimension.textSize_11,
+                            whiteTextSize: 11.r,
                           ),
                           CommonText(
                             text: 'Sign Up',
-                            whiteTextSize: Dimension.textSize_11,
+                            whiteTextSize: 11.r,
                             textColor: AppColors.secondary,
                             underLine: TextDecoration.underline,
                             underlineColor: AppColors.secondary,

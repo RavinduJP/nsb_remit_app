@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
@@ -8,7 +9,6 @@ import 'package:nsb_remit/widgets/common/international_mobile_number_field.dart'
 import 'package:provider/provider.dart';
 
 import '../../../providers/user_details_provider.dart';
-import '../../../utils/constants/dimensions.dart';
 import '../../../utils/constants/routes.dart';
 
 class SignUpDetails extends StatefulWidget {
@@ -41,39 +41,39 @@ class _SignUpDetailsState extends State<SignUpDetails> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-           CommonText(
+            CommonText(
               text: 'How we identify you?',
-              whiteTextSize: Dimension.textSize_12,
+              whiteTextSize: 12.r,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               SizedBox(
                 width: 170,
                 child: RadioListTile(
-                    activeColor: AppColors.secondary,
-                    title: Text(
-                      'Passport',
-                      style: TextStyle(
-                          fontSize: Dimension.textSize_14,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.heddingColor),
-                    ),
-                    value: options[0],
-                    groupValue: currentOption,
-                    onChanged: (value) {
-                      setState(() {
-                        currentOption = value.toString();
-                      });
-                    },
-                    ),
+                  activeColor: AppColors.secondary,
+                  title: Text(
+                    'Passport',
+                    style: TextStyle(
+                        fontSize: 14.r,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.heddingColor),
+                  ),
+                  value: options[0],
+                  groupValue: currentOption,
+                  onChanged: (value) {
+                    setState(() {
+                      currentOption = value.toString();
+                    });
+                  },
+                ),
               ),
               SizedBox(
-                width: 170,
+                width: 170.w,
                 child: RadioListTile(
                     activeColor: AppColors.secondary,
                     title: Text(
                       'Other',
                       style: TextStyle(
-                          fontSize: Dimension.textSize_14,
+                          fontSize: 14.r,
                           fontWeight: FontWeight.w400,
                           color: AppColors.heddingColor),
                     ),

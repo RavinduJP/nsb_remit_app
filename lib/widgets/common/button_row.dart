@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/widgets/common/custom_back_button.dart';
 import 'package:nsb_remit/widgets/common/gray_button.dart';
 import 'package:nsb_remit/widgets/common/next_button.dart';
 
-import '../../utils/constants/dimensions.dart';
 
 class ButtonRow extends StatelessWidget {
   const ButtonRow({
@@ -26,7 +26,7 @@ class ButtonRow extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: Dimension.width50),
+          padding: EdgeInsets.symmetric(horizontal: 50.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

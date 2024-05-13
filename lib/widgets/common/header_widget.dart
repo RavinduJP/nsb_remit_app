@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
 
@@ -10,7 +11,7 @@ class HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.maxFinite,
-      height: 50.0,
+      height: 50.h,
       //   height: ResponsiveLayoutMixin().getContentHeight(context),
       //   width: ResponsiveLayoutMixin().getContentWidth(context),
       child: Row(
@@ -24,29 +25,29 @@ class HeaderWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              const Column(
+               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CommonText(
                     text: "Good Morning",
-                    whiteTextSize: 10.0,
+                    whiteTextSize: 10.r,
                     fontWeight: FontWeight.w400,
                     textColor: AppColors.whiteColor,
                   ),
                   CommonText(
                     text: 'Sithara Geethal',
-                    whiteTextSize: 10.0,
+                    whiteTextSize: 10.r,
                     fontWeight: FontWeight.w700,
                     textColor: AppColors.whiteColor,
                   ),
                 ],
               ),
-              const SizedBox(
-                width: 10.0,
+               SizedBox(
+                width: 10.h,
               ),
               Container(
-                height: 45.0,
-                width: 45.0,
+                height: 45.h,
+                width: 45.w,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.notificationBackColor,

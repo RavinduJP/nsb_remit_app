@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/camera_view.dart';
@@ -28,7 +29,7 @@ class _ProofDocumentsState extends State<ProofDocuments> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            height: 200,
+            height: 185.h,
             width: double.maxFinite,
             child: CameraView(
               dottedBorderColor: AppColors.secondary,
@@ -39,7 +40,7 @@ class _ProofDocumentsState extends State<ProofDocuments> {
             height: 10.0,
           ),
           SizedBox(
-            height: 200,
+            height: 185.h,
             width: double.maxFinite,
             child: CameraView(
               dottedBorderColor: AppColors.secondary,
@@ -53,7 +54,7 @@ class _ProofDocumentsState extends State<ProofDocuments> {
             .addProofDocumentationImage(
                 // proofDocument: widget.proofDocumentOneImageController.text);
                 proofDocument: []);
-                Provider.of<UserDetailsProvider>(context, listen: false)
+        Provider.of<UserDetailsProvider>(context, listen: false)
             .addProofDocumentationImage(
                 // proofDocument: widget.proofDocumentTwoImageController.text);
                 proofDocument: []);

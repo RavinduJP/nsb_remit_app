@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/widgets/common/button_row.dart';
 import 'package:nsb_remit/widgets/common/common_layout.dart';
@@ -26,54 +27,53 @@ class _OtpVerificationState extends State<OtpVerification> {
       maxLine: 4,
       body: Column(
         children: [
-          const SizedBox(
-            height: 40.0,
+          SizedBox(
+            height: 40.h,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 80.0),
+            padding: EdgeInsets.symmetric(horizontal: 80.w),
             child: PinCodeTextField(
               controller: _otpVerificationController,
               appContext: context,
               length: 4,
               obscureText: false,
               obscuringCharacter: '*',
-              textStyle: const TextStyle(
+              textStyle: TextStyle(
                 color: AppColors.heddingColor,
-                fontSize: 20.0,
+                fontSize: 20.r,
                 fontWeight: FontWeight.w600,
               ),
               hintCharacter: '*',
-              hintStyle: const TextStyle(
+              hintStyle: TextStyle(
                   color: AppColors.heddingColor,
-                  fontSize: 20.0,
+                  fontSize: 20.r,
                   fontWeight: FontWeight.w600),
               showCursor: false,
               keyboardType: TextInputType.number,
               pinTheme: PinTheme(
                 shape: PinCodeFieldShape.underline,
-                fieldHeight: 36.0,
-                fieldWidth: 50.0,
+                fieldHeight: 36.h,
+                fieldWidth: 50.w,
                 inactiveColor: AppColors.subHeddingColor,
                 activeColor: AppColors.subHeddingColor,
                 selectedColor: AppColors.subHeddingColor,
                 disabledColor: AppColors.subHeddingColor,
               ),
-              cursorHeight: 20.0,
+              cursorHeight: 20.h,
             ),
           ),
-          const SizedBox(
-            height: 10.0,
+          SizedBox(
+            height: 10.h,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CommonText(
-                  text: 'Didn’t receive OTP? ', whiteTextSize: 12.0),
+              CommonText(text: 'Didn’t receive OTP? ', whiteTextSize: 12.r),
               GestureDetector(
                 onTap: () {},
-                child: const CommonText(
+                child: CommonText(
                   text: 'Resend',
-                  whiteTextSize: 12.0,
+                  whiteTextSize: 12.r,
                   textColor: AppColors.secondary,
                   underLine: TextDecoration.underline,
                   underlineColor: AppColors.secondary,
@@ -81,8 +81,8 @@ class _OtpVerificationState extends State<OtpVerification> {
               )
             ],
           ),
-          const SizedBox(
-            height: 10.0,
+          SizedBox(
+            height: 10.h,
           ),
         ],
       ),
