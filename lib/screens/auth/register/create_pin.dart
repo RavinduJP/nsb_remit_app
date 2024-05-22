@@ -20,21 +20,25 @@ class CreatePin extends StatefulWidget {
 }
 
 class _CreatePinState extends State<CreatePin> {
-  _displayDialog(BuildContext context) async {
+  String? _pinErrorText;
+  String? _confirmPinErrorText;
+
+  _displayDialog(
+    BuildContext context, {
+    required String title,
+    Color? backgroundColor,
+    Widget? circularProgressIndicator,
+  }) async {
     return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Center(child: Text('Loding .....')),
-            backgroundColor: Colors.white.withOpacity(0.2),
-            content: const SizedBox(
+            title: Center(child: Text(title)),
+            backgroundColor: backgroundColor,
+            content: SizedBox(
               height: 50,
               width: 50,
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.secondary,
-                ),
-              ),
+              child: Center(child: circularProgressIndicator),
             ),
           );
         });
@@ -42,8 +46,8 @@ class _CreatePinState extends State<CreatePin> {
 
   @override
   Widget build(BuildContext context) {
-    final createPinController = TextEditingController();
-    final confirmPinController = TextEditingController();
+    final _createPinController = TextEditingController();
+    final _confirmPinController = TextEditingController();
     return CommonLayout(
       hedingTitle: 'Create PIN',
       hedingSubTitle: 'You can setup PIN to login your \n account with ease!',
@@ -52,17 +56,34 @@ class _CreatePinState extends State<CreatePin> {
         child: Column(
           children: [
             CreatePinField(
-                controller: createPinController, pinHeader: 'Enter Your PIN*'),
+              controller: _createPinController,
+              pinHeader: 'Enter Your PIN*',
+            ),
             SizedBox(
               height: 20.h,
             ),
             CreatePinField(
-                controller: confirmPinController,
+                controller: _confirmPinController,
                 pinHeader: 'Confirm Your PIN*'),
           ],
         ),
       ),
       bottomButton: ButtonRow(onTap: () {
+        final enteredPin = _createPinController.text.trim();
+        if (enteredPin.isEmpty) {
+          _pinErrorText = "PIN is required";
+        }
+        if (_pinErrorText != null) {
+          return setState(() {});
+        }
+        final confirmEnteredPin = _confirmPinController.text.trim();
+        if (confirmEnteredPin.isEmpty) {
+          _confirmPinErrorText = "PIN is required";
+        }
+        if (_confirmPinErrorText != null || _pinErrorText != null) {
+          return setState(() {});
+        }
+
         var registerBody = {
           "first_name":
               context.read<UserDetailsProvider>().userDetails.firstName,
@@ -80,7 +101,7 @@ class _CreatePinState extends State<CreatePin> {
               context.read<UserDetailsProvider>().userDetails.passportNumbe,
           "email": context.read<UserDetailsProvider>().userDetails.emailAddress,
           "nic": context.read<UserDetailsProvider>().userDetails.nicNumber,
-          "password": confirmPinController.text,
+          "password": _confirmPinController.text,
           "address_line1":
               context.read<UserDetailsProvider>().userDetails.house,
           "address_line2":
@@ -133,12 +154,17 @@ class _CreatePinState extends State<CreatePin> {
             "DOCUMENT_TYPE ::::${context.read<UserDetailsProvider>().userDetails.documentType}");
         print(
             "COUNTRY_CODE ::::${context.read<UserDetailsProvider>().userDetails.selectedCountryCode}");
-        print(createPinController.text);
-        print(confirmPinController.text);
+        print(_createPinController.text);
+        print(_confirmPinController.text);
 
         Navigator.of(context).pushNamed(Routes.quickSetUpScreen);
         // context.read<UserDetails>().city;
-        _displayDialog(context);
+        _displayDialog(context,
+            title: 'Loading ......',
+            backgroundColor: Colors.white.withOpacity(0.2),
+            circularProgressIndicator: const CircularProgressIndicator(
+              color: AppColors.secondary,
+            ));
         ApiService.callApi(ApiEndpoints.registerUser, RequestType.post,
             requestBody: registerBody, errorMessages: {}).then(
           (value) {
@@ -153,7 +179,7 @@ class _CreatePinState extends State<CreatePin> {
   }
 }
 
-class CreatePinField extends StatelessWidget {
+class CreatePinField extends StatefulWidget {
   const CreatePinField({
     super.key,
     required this.controller,
@@ -162,17 +188,24 @@ class CreatePinField extends StatelessWidget {
 
   final TextEditingController controller;
   final String pinHeader;
+
+  @override
+  State<CreatePinField> createState() => _CreatePinFieldState();
+}
+
+class _CreatePinFieldState extends State<CreatePinField> {
+  String? _pinErrorText;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CommonText(
-          text: pinHeader,
+          text: widget.pinHeader,
           whiteTextSize: 11.r,
           alignment: Alignment.topLeft,
         ),
         PinCodeTextField(
-          controller: controller,
+          controller: widget.controller,
           appContext: context,
           length: 4,
           obscureText: true,
@@ -199,7 +232,23 @@ class CreatePinField extends StatelessWidget {
             disabledColor: AppColors.subHeddingColor,
           ),
           cursorHeight: 24.0,
+          onCompleted: (value) {
+            setState(() {
+              _pinErrorText = null;
+            });
+            print("Completed");
+          },
         ),
+        _pinErrorText != null
+            ? Text(
+                _pinErrorText!,
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 10.r,
+                ),
+                textAlign: TextAlign.left,
+              )
+            : const Text(""),
       ],
     );
   }

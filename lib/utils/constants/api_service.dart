@@ -49,7 +49,8 @@ class ApiService {
       throw Exception(ErrorMessages.invalidRequestParametersMessage);
     }
 
-    final url = "https://dev-ceylonremit.paymediasolutions.com:5004/api/mobile$endpoint";
+    final url =
+        "https://dev-ceylonremit.paymediasolutions.com:5004/api/mobile$endpoint";
 
     late http.Response response;
 
@@ -136,7 +137,8 @@ class ApiService {
               message = ErrorMessages.genericMessage;
           }
         }
-        throw AppError(message);
+        //throw AppError(message);
+        return responseBody['data'];
       } else if (response.statusCode >= 423 && response.statusCode <= 500) {
         final responseBody = jsonDecode(response.body);
         final code = responseBody['data']['code'];

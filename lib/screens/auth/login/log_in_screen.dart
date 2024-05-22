@@ -4,6 +4,7 @@ import 'package:nsb_remit/providers/user_details_provider.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 import 'package:nsb_remit/utils/constants/routes.dart';
 import 'package:nsb_remit/utils/mixins/responsive_layout_mixin.dart';
+import 'package:nsb_remit/utils/validation.dart';
 import 'package:nsb_remit/widgets/common/common_button.dart';
 import 'package:nsb_remit/widgets/common/custom_text_form_field.dart';
 import 'package:nsb_remit/widgets/common/common_text.dart';
@@ -24,21 +25,22 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-  _displayDialog(BuildContext context) async {
+  _displayDialog(
+    BuildContext context, {
+    required String title,
+    Color? backgroundColor,
+    Widget? circularProgressIndicator,
+  }) async {
     return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Center(child: Text('Loding .....')),
-            backgroundColor: Colors.white.withOpacity(0.2),
-            content: const SizedBox(
+            title: Center(child: Text(title)),
+            backgroundColor: backgroundColor,
+            content: SizedBox(
               height: 50,
               width: 50,
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.secondary,
-                ),
-              ),
+              child: Center(child: circularProgressIndicator),
             ),
           );
         });
@@ -46,6 +48,11 @@ class _LogInScreenState extends State<LogInScreen> {
 
   final _emailController = TextEditingController();
   final _pinController = TextEditingController();
+
+  String? _emailErrorText;
+  String? _pinErrorText;
+
+  bool isErrorTextAvailable = false;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +72,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     controller: _emailController,
                     lableText: "Email Address",
                     hintText: "Enter Your Email Addres",
+                    errorText: _emailErrorText,
+                    onChanged: (enteredLoginEmail) => setState(() => _emailErrorText = null),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -78,26 +87,47 @@ class _LogInScreenState extends State<LogInScreen> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  PinCodeTextField(
-                    appContext: context,
-                    length: 4,
-                    obscureText: true,
-                    obscuringCharacter: '*',
-                    textStyle: const TextStyle(
-                      color: AppColors.heddingColor,
-                    ),
-                    pinTheme: PinTheme(
-                      shape: PinCodeFieldShape.underline,
-                      fieldHeight: 30.h,
-                      fieldWidth: 40.w,
-                      inactiveColor: AppColors.subHeddingColor,
-                      activeColor: AppColors.secondary,
-                      selectedColor: AppColors.subHeddingColor,
-                      disabledColor: AppColors.subHeddingColor,
-                    ),
-                    controller: _pinController,
-                    onCompleted: (value) => print("Completed"),
-                    autoDisposeControllers: false,
+                  Column(
+                    children: [
+                      PinCodeTextField(
+                        appContext: context,
+                        length: 4,
+                        obscureText: true,
+                        obscuringCharacter: '*',
+                        textStyle: const TextStyle(
+                          color: AppColors.heddingColor,
+                        ),
+                        pinTheme: PinTheme(
+                          shape: PinCodeFieldShape.underline,
+                          fieldHeight: 30.h,
+                          fieldWidth: 40.w,
+                          inactiveColor: AppColors.subHeddingColor,
+                          activeColor: AppColors.secondary,
+                          selectedColor: AppColors.subHeddingColor,
+                          disabledColor: AppColors.subHeddingColor,
+                        ),
+                        controller: _pinController,
+                        onChanged: (enteredPin) =>
+                            setState(() => _pinErrorText = null),
+                        onCompleted: (value) {
+                          setState(() {
+                            _pinErrorText = null;
+                          });
+                          print("Completed");
+                        },
+                        autoDisposeControllers: false,
+                      ),
+                      _pinErrorText != null
+                          ? Text(
+                              _pinErrorText!,
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 10.r,
+                              ),
+                              textAlign: TextAlign.left,
+                            )
+                          : const Text("")
+                    ],
                   ),
                   Row(
                     children: [
@@ -130,7 +160,23 @@ class _LogInScreenState extends State<LogInScreen> {
                         btnTextColor: AppColors.primary,
                         btnFontSize: 14.r,
                         btnFontWeight: FontWeight.w500,
-                        onTap: () {
+                        onTap: () async {
+                          final enteredLoginEmail =
+                              _emailController.text.trim();
+                          _emailErrorText = Validation.emailAddressValidator(
+                              context, enteredLoginEmail);
+                          if (_emailErrorText != null) {
+                            return setState(() {});
+                          }
+
+                          final enteredPin = _pinController.text.trim();
+                          if (enteredPin.isEmpty) {
+                            _pinErrorText = "PIN is required";
+                          }
+                          if (_emailErrorText != null ||
+                              _pinErrorText != null) {
+                            return setState(() {});
+                          }
                           var loginBody = {
                             "Username": context
                                 .read<UserDetailsProvider>()
@@ -161,17 +207,24 @@ class _LogInScreenState extends State<LogInScreen> {
                               .emailAddress;
                           print(email);
 
-                          _displayDialog(context);
-                          ApiService.callApi(
+                          _displayDialog(context,
+                              title: 'Loading ......',
+                              backgroundColor: Colors.white.withOpacity(0.2),
+                              circularProgressIndicator:
+                                  const CircularProgressIndicator(
+                                color: AppColors.secondary,
+                              ));
+                          await ApiService.callApi(
                               ApiEndpoints.loginUser, RequestType.post,
                               requestBody: loginBody, errorMessages: {}).then(
                             (value) {
+                              print("Error :${value['message']}");
                               Navigator.of(context).pop();
                               Navigator.of(context)
                                   .pushNamed(Routes.homeScreen);
                             },
                           );
-
+                          Navigator.of(context).pop();
                           // Navigator.of(context).pushNamed(Routes.homeScreen);
                         },
                       ),
