@@ -12,7 +12,7 @@ class InternationalMobileNumberField extends StatefulWidget {
     required this.list,
     required this.selectedCountryCode,
     required this.mobileNumberControler,
-    this.countryCodeControler,
+    required this.countryCodeControler,
   });
 
   final String? errorText;
@@ -22,7 +22,7 @@ class InternationalMobileNumberField extends StatefulWidget {
   final List<String> list;
   final String selectedCountryCode;
   final TextEditingController mobileNumberControler;
-  final TextEditingController? countryCodeControler;
+  final TextEditingController countryCodeControler;
 
   @override
   State<InternationalMobileNumberField> createState() =>
@@ -31,7 +31,7 @@ class InternationalMobileNumberField extends StatefulWidget {
 
 class _InternationalMobileNumberFieldState
     extends State<InternationalMobileNumberField> {
-  String selectedCountry = "";
+  String? selectedCountry;
   @override
   Widget build(BuildContext context) {
     Color borderColor =
@@ -68,13 +68,14 @@ class _InternationalMobileNumberFieldState
                         ),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 13.w, vertical: 6.h),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 13.w, vertical: 6.h),
                       child: DropdownButton(
-                        value: widget.selectedCountryCode,
+                        value: selectedCountry ?? widget.selectedCountryCode,
                         elevation: 16,
                         style: const TextStyle(
                             color: AppColors.bottomSubHeddingColor),
+                        dropdownColor: AppColors.secondary,
                         icon: Icon(
                           Icons.arrow_drop_down,
                           color: AppColors.heddingColor,
@@ -86,21 +87,22 @@ class _InternationalMobileNumberFieldState
                         ),
                         onChanged: (String? value) {
                           setState(() {
-                            widget.countryCodeControler!.text = value!;
-                       selectedCountry = value;
+                            widget.countryCodeControler.text = value!;
+                            selectedCountry = value;
                           });
                         },
                         items: widget.list
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Container(
-                              child: Text(
-                                value,
-                                style: TextStyle(
-                                    color: AppColors.subHeddingColor,
-                                    fontSize: 14.r),
-                              ),
+                            child: Text(
+                              value,
+                              style: TextStyle(
+                                  // color: AppColors.subHeddingColor,
+                                  color: selectedCountry == value
+                                      ? AppColors.whiteColor
+                                      : AppColors.subHeddingColor,
+                                  fontSize: 14.r),
                             ),
                           );
                         }).toList(),

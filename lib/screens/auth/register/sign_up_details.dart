@@ -124,6 +124,9 @@ class _SignUpDetailsState extends State<SignUpDetails> {
               keyboardType: TextInputType.emailAddress,
               onChanged: (emailController) => setState(() => _emailFormFieldError = null),
             ),
+            SizedBox(
+              height: MediaQuery.of(context).viewInsets.bottom,
+            )
           ],
         ),
       ),

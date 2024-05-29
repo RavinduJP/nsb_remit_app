@@ -73,7 +73,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     lableText: "Email Address",
                     hintText: "Enter Your Email Addres",
                     errorText: _emailErrorText,
-                    onChanged: (enteredLoginEmail) => setState(() => _emailErrorText = null),
+                    onChanged: (enteredLoginEmail) =>
+                        setState(() => _emailErrorText = null),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -160,7 +161,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         btnTextColor: AppColors.primary,
                         btnFontSize: 14.r,
                         btnFontWeight: FontWeight.w500,
-                        onTap: () async {
+                        onTap: () {
                           final enteredLoginEmail =
                               _emailController.text.trim();
                           _emailErrorText = Validation.emailAddressValidator(
@@ -178,23 +179,19 @@ class _LogInScreenState extends State<LogInScreen> {
                             return setState(() {});
                           }
                           var loginBody = {
-                            "Username": context
-                                .read<UserDetailsProvider>()
-                                .userDetails
-                                .emailAddress,
-                            "Password": context
-                                .read<UserDetailsProvider>()
-                                .userDetails
-                                .pin,
+                            "Username": enteredLoginEmail,
+                            "Password": enteredPin,
                             "isBiometric": false,
                             "deviceUuid": "N6F26Q",
                             "signature":
                                 "QX+r1rRzD9tZJEWR0lyAbuSRXnADbt+EztbaG3lbTFPH9kCWhd8jcy1GPxU3GR244vXGQoElqcTflx1B1mxyyFQbRd/Wsci8DzsTV6mDzk1rrrpXDdFW60b6KXlY/mtmVDOgq228vXpHqlGjdeeXMIx+hKzC90FmGVUM4kzuqkj46oCGwWGXeaC/PlKeBbd2H39TKDziF0sfNcu0z6mHYSGCW5K/10IBshWeN5wfyTHM0b0lcx+vWA8gFddUOp2OntrziEaNsdObuD8/PkdM6mRY4wJ0SAUzO9PQeSy4ryxP1Cs7Vt5ztLEGSfm6/dvwzhav023szgqxiu9kqnmBTQ=="
                           };
-                          print(
-                              "EMAIL ::::${context.read<UserDetailsProvider>().userDetails.emailAddress}");
-                          print(
-                              "PIN ::::${context.read<UserDetailsProvider>().userDetails.pin}");
+                          // print(
+                          //     "EMAIL ::::${context.read<UserDetailsProvider>().userDetails.emailAddress}");
+                          // print(
+                          //     "PIN ::::${context.read<UserDetailsProvider>().userDetails.pin}");
+                          print("EMAIL ::::$enteredLoginEmail");
+                          print("PIN ::::$enteredPin");
                           Provider.of<UserDetailsProvider>(context,
                                   listen: false)
                               .addLoginDetails(
@@ -214,18 +211,22 @@ class _LogInScreenState extends State<LogInScreen> {
                                   const CircularProgressIndicator(
                                 color: AppColors.secondary,
                               ));
-                          await ApiService.callApi(
+                          ApiService.callApi(
                               ApiEndpoints.loginUser, RequestType.post,
                               requestBody: loginBody, errorMessages: {}).then(
                             (value) {
                               print("Error :${value['message']}");
-                              Navigator.of(context).pop();
-                              Navigator.of(context)
-                                  .pushNamed(Routes.homeScreen);
+                              if (value['code'] != 36864) {
+                                Navigator.of(context).pop();
+                                   _displayDialog(context,
+                                      title: '${value['message']}');
+                              } else {
+                                Navigator.of(context).pop();
+                                Navigator.of(context)
+                                    .pushNamed(Routes.homeScreen);
+                              }
                             },
                           );
-                          Navigator.of(context).pop();
-                          // Navigator.of(context).pushNamed(Routes.homeScreen);
                         },
                       ),
                       SizedBox(

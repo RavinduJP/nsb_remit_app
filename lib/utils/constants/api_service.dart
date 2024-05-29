@@ -112,7 +112,10 @@ class ApiService {
         }
         return data;
       } else if (response.statusCode == 400) {
-        throw AppError(ErrorMessages.genericMessage);
+        final responseBody = jsonDecode(response.body);
+        final data = responseBody['data'];
+        return data;
+        // throw AppError(ErrorMessages.genericMessage);
       } else if (response.statusCode == 401) {
         throw AppError(ErrorMessages.unauthorizedMessage);
       } else if (response.statusCode >= 402 && response.statusCode <= 422) {

@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsb_remit/utils/constants/app_colors.dart';
 
-
-
 class CustomDropDown extends StatefulWidget {
-   const CustomDropDown({
+  const CustomDropDown({
     super.key,
     required this.itemList,
     required this.selectedItem,
     this.lableText = '',
-     required this.countryController,
+    required this.countryController,
   });
 
   final List<String> itemList;
@@ -25,7 +23,7 @@ class CustomDropDown extends StatefulWidget {
 class _CustomDropDownState extends State<CustomDropDown> {
   // final screenHeight = MediaQuery.of(context).size.height;
   String? selectedValue;
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,7 +36,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
               fontSize: 12.r,
               fontWeight: FontWeight.w400),
         ),
-         SizedBox(
+        SizedBox(
           height: 5.h,
         ),
         Container(
@@ -52,9 +50,10 @@ class _CustomDropDownState extends State<CustomDropDown> {
           ),
           padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 3.h),
           child: DropdownButton(
-            value:selectedValue?? widget.selectedItem,
+            value: selectedValue ?? widget.selectedItem,
             elevation: 16,
             style: const TextStyle(color: AppColors.bottomSubHeddingColor),
+            dropdownColor: AppColors.secondary,
             icon: Padding(
               padding: EdgeInsets.only(left: 150.sp),
               child: Icon(
@@ -77,16 +76,17 @@ class _CustomDropDownState extends State<CustomDropDown> {
                 widget.itemList.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
-                child: 
-                   Padding(
-                    padding: EdgeInsets.only(right: 100.w),
-                    child: Text(
-                      value,
-                      style: TextStyle(
-                          color: AppColors.subHeddingColor, fontSize: 14.r),
-                    ),
+                child: Padding(
+                  padding: EdgeInsets.only(right: 100.w),
+                  child: Text(
+                    value,
+                    style: TextStyle(
+                        color: selectedValue == value
+                            ? AppColors.whiteColor
+                            : AppColors.subHeddingColor,
+                        fontSize: 14.r),
                   ),
-                
+                ),
               );
             }).toList(),
           ),
